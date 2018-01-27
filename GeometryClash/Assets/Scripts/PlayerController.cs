@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     Vector3 move, rotation;
     public GameObject normalShotPrefab;
     public string name;
-
+    public int playerID;
 
 
 
@@ -63,7 +63,8 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot ()
     {
-        if (Input.GetButtonDown (gameObject.name + " right-shot"))
+        //if (Input.GetButtonDown (gameObject.name + " right-shot"))
+        if (Input.GetKeyDown("joystick " + playerID.ToString () + " button 5"))
         {
             NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
             ns.DoInit (this);
