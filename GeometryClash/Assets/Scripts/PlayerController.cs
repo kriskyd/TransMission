@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot ()
     {
-        if (Input.GetAxisRaw(gameObject.name + " right-shot") > 0.5f)
+        if (Input.GetButtonDown(gameObject.name + " right-shot"))
         {
             NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
             ns.DoInit (this);
@@ -74,9 +74,7 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKey (KeyCode.D)) {
 			move.x += Vector2.right.magnitude;
 		}
-		move *= moveSpeed;
-
-		GetComponent<Rigidbody2D> ().MovePosition (transform.position + move);
+		transform.Translate (move);
 	}
 
 

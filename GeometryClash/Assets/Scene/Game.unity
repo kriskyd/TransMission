@@ -151,6 +151,69 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4833538556887592, guid: e604dd58413c04db5ae78b5e2ccaacde, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833538556887592, guid: e604dd58413c04db5ae78b5e2ccaacde, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 68254834332567608, guid: e604dd58413c04db5ae78b5e2ccaacde,
+        type: 2}
+      propertyPath: m_EdgeRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 68254834332567608, guid: e604dd58413c04db5ae78b5e2ccaacde,
+        type: 2}
+      propertyPath: m_Points.Array.data[3].y
+      value: 1.596702
+      objectReference: {fileID: 0}
+    - target: {fileID: 68254834332567608, guid: e604dd58413c04db5ae78b5e2ccaacde,
+        type: 2}
+      propertyPath: m_Points.Array.data[3].x
+      value: -3.0794837
+      objectReference: {fileID: 0}
+    - target: {fileID: 68254834332567608, guid: e604dd58413c04db5ae78b5e2ccaacde,
+        type: 2}
+      propertyPath: m_Points.Array.data[0].y
+      value: 1.539248
+      objectReference: {fileID: 0}
+    - target: {fileID: 68254834332567608, guid: e604dd58413c04db5ae78b5e2ccaacde,
+        type: 2}
+      propertyPath: m_Points.Array.data[0].x
+      value: 3.1016834
+      objectReference: {fileID: 0}
+    - target: {fileID: 68254834332567608, guid: e604dd58413c04db5ae78b5e2ccaacde,
+        type: 2}
+      propertyPath: m_Points.Array.data[4].y
+      value: 1.5859702
+      objectReference: {fileID: 0}
+    - target: {fileID: 68254834332567608, guid: e604dd58413c04db5ae78b5e2ccaacde,
+        type: 2}
+      propertyPath: m_Points.Array.data[4].x
+      value: 3.0799599
+      objectReference: {fileID: 0}
+    - target: {fileID: 68254834332567608, guid: e604dd58413c04db5ae78b5e2ccaacde,
+        type: 2}
+      propertyPath: m_Points.Array.data[1].y
+      value: -1.5729473
+      objectReference: {fileID: 0}
+    - target: {fileID: 68254834332567608, guid: e604dd58413c04db5ae78b5e2ccaacde,
+        type: 2}
+      propertyPath: m_Points.Array.data[1].x
+      value: 3.1166787
+      objectReference: {fileID: 0}
+    - target: {fileID: 68254834332567608, guid: e604dd58413c04db5ae78b5e2ccaacde,
+        type: 2}
+      propertyPath: m_Points.Array.data[2].y
+      value: -1.5776894
+      objectReference: {fileID: 0}
+    - target: {fileID: 68254834332567608, guid: e604dd58413c04db5ae78b5e2ccaacde,
+        type: 2}
+      propertyPath: m_Points.Array.data[2].x
+      value: -3.0804195
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e604dd58413c04db5ae78b5e2ccaacde, type: 2}
   m_IsPrefabParent: 0
@@ -344,7 +407,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
