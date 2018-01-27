@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuperShot : MonoBehaviour
+public class SuperShot : Bullet
 {
-    public PlayerController parent;
-    public float speed;
-    public int damage;
     public float moveTime = 1f, lifeTime = 10f;
 
     public void DoInit (PlayerController parent)

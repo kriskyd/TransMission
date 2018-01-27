@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SquareUltimate : MonoBehaviour {
+public class SquareUltimate : Bullet
+{
 
 	public PlayerController parent;
 	public float speed = 5;
@@ -33,4 +34,5 @@ public class SquareUltimate : MonoBehaviour {
 		// Destroy the bullet 
 		Destroy(gameObject);
 	} 
+
 }

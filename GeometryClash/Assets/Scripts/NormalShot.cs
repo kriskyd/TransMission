@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NormalShot : MonoBehaviour
+public class NormalShot : Bullet
 {
-    public PlayerController parent;
-    public float speed;
-    public int damage;
 
     public void DoInit (PlayerController parent)
     {

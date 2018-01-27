@@ -98,8 +98,6 @@ public class GameController : MonoBehaviour
 				gameState = nextRound;
 				breakTime = maxBreakTime;
 			}
-			p1WinText.text = p1WinCount.ToString ();
-			p2WinText.text = p2WinCount.ToString ();
 
                 break;
             case GameState.End:
@@ -131,6 +129,9 @@ public class GameController : MonoBehaviour
 
         if (playerDied)
         {
+            p1WinText.text = p1WinCount.ToString ();
+            p2WinText.text = p2WinCount.ToString ();
+
             if (p1WinCount == 2)
             {
                 EndGame (playerOne);
