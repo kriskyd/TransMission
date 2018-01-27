@@ -2,15 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
+    public PlayerController playerOne, playerTwo;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
+    void Start ()
+    {
+        playerOne.DoInit ();
+        playerTwo.DoInit ();
+    }
+
+    void Update ()
+    {
+        playerOne.DoUpdate ();
+        playerTwo.DoUpdate ();
+    }
 }
