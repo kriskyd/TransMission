@@ -9,6 +9,7 @@ TagManager:
   - Pickup
   - Bullet
   - CircleUltimate
+  - SquareUltimate
   layers:
   - Default
   - TransparentFX

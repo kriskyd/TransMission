@@ -10,13 +10,13 @@ public class SquareUltimate : Bullet
 		transform.Translate (transform.right * speed * Time.deltaTime, Space.World);
 	}
 
-	private void OnCollisionEnter2D (Collision2D collision)
-	{
-		print ("TAG " + collision.gameObject.tag);
+	//private void OnCollisionEnter2D (Collision2D collision)
+	//{
+	//	print ("TAG " + collision.gameObject.tag);
 
-		if (collision.gameObject.tag == "Arena")
-			Destroy (gameObject);
-	}
+	//	if (collision.gameObject.tag == "Arena")
+	//		Destroy (gameObject);
+	//}
 
 
 	void OnBecameInvisible() {
