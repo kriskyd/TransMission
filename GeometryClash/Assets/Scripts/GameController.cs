@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour
     public List<TrapController> traps;
 
     private Vector3 p1StartPos, p2StartPos;
-    private int roundCount = 0, maxRounds = 3, p1WinCount = 0, p2WinCount = 0, maxWins = 2;
+    public int roundCount = 0, maxRounds = 3, p1WinCount = 0, p2WinCount = 0, maxWins = 2;
     public float roundTime, maxRoundTime = 60f, breakTime, maxBreakTime = 3f;
     public bool playerDied = false;
     public Text timer, starter;

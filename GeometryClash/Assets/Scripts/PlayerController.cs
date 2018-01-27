@@ -10,10 +10,10 @@ public class PlayerController : MonoBehaviour
     public Geometry geometry;
     public float moveSpeed, rotateSpeed;
     Vector3 move, rotation;
-    public GameObject normalShotPrefab, superShotPrefab;
+    public GameObject normalShotPrefab, superShotPrefab, ultimateShotPrefab;
     public string name;
     public int playerID;
-
+    private bool shot = false, shot2 = false;
 
 
     public int lifeTotal;
@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
 
     public void DoInit ()
     {
-
+        energyTotal = 15;
+        energySlider.value = energyTotal;
     }
 
     public void DoUpdate ()
@@ -35,6 +36,10 @@ public class PlayerController : MonoBehaviour
         superCD -= Time.deltaTime;
         if (superCD <= 0f)
             SuperShoot ();
+        if (energyTotal == 100)
+        {
+            UltimateShoot ();
+        }
 
 
 
@@ -69,16 +74,23 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot ()
     {
-        if (Input.GetKeyDown ("joystick " + playerID.ToString () + " button 5"))
+        if (Input.GetAxisRaw (gameObject.name + " right-trigger") > 0.5f)
         {
-            NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
-            ns.DoInit (this);
+            if (!shot)
+            {
+                PlayerController enemy = playerID == 1 ? GameController.Current.playerTwo : GameController.Current.playerTwo;
+                NormalShot ns = Instantiate (normalShotPrefab, enemy.transform.position, normalShotPrefab.transform.rotation).GetComponent<NormalShot> ();
+                ns.DoInit (this);
+                shot = true;
+            }
         }
+        else
+            shot = false;
     }
 
     private void SuperShoot ()
     {
-        if (Input.GetKeyDown ("joystick " + playerID.ToString () + " button 4"))
+        if (Input.GetAxisRaw (gameObject.name + " left-trigger") > 0.5f)
         {
             superCD = maxSuperCD;
             switch (geometry)
@@ -95,6 +107,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void UltimateShoot ()
+    {
+        if (Input.GetKeyDown ("joystick " + playerID.ToString () + " button 5"))
+        {
+            switch (geometry)
+            {
+                case Geometry.circle:
+                    SuperShot ss = Instantiate (ultimateShotPrefab, transform.position, transform.rotation).GetComponent<SuperShot> ();
+                    ss.DoInit (this);
+                    break;
+                case Geometry.square:
+
+                    break;
+            }
+        }
+    }
+    private void Shield ()
+    {
+        if (Input.GetKeyDown ("joystick " + playerID.ToString () + " button 4"))
+        {
+            switch (geometry)
+            {
+                case Geometry.circle:
+
+                    break;
+                case Geometry.square:
+
+                    break;
+            }
+        }
+    }
 
     void OnTriggerEnter2D (Collider2D other)
     {
@@ -106,6 +149,7 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag ("Pickup"))
         {
             ReceiveEnergy (other.GetComponent<Pickup> ().energy);
+            Destroy (other.gameObject);
         }
         else if (other.CompareTag ("Bullet"))
         {
@@ -169,9 +213,14 @@ public class PlayerController : MonoBehaviour
         transform.position = position;
         transform.rotation = Quaternion.identity;
         lifeTotal = 100;
-        energyTotal = 0;
         lifeSlider.value = lifeTotal;
-        energySlider.value = 15;
+        superCD = 0f;
+        if (GameController.Current.gameState == GameController.GameState.End)
+        {
+            energyTotal = 15;
+            energySlider.value = energyTotal;
+        }
+
         foreach (NormalShot ns in FindObjectsOfType<NormalShot> ().ToList ())
         {
             Destroy (ns.gameObject);
