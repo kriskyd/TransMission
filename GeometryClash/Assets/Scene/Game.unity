@@ -373,7 +373,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4824820638139676, guid: 3313b7c7882336f46a203393a44af385, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114337516243211638, guid: 3313b7c7882336f46a203393a44af385,
         type: 2}
@@ -385,6 +385,11 @@ Prefab:
       propertyPath: energySlider
       value: 
       objectReference: {fileID: 327190389}
+    - target: {fileID: 114337516243211638, guid: 3313b7c7882336f46a203393a44af385,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3313b7c7882336f46a203393a44af385, type: 2}
   m_IsPrefabParent: 0
@@ -596,11 +601,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde50802ba6f08e48bd156425b811764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: 0
+  nextRound: 1
   playerOne: {fileID: 822506401}
   playerTwo: {fileID: 519385122}
   pickups: []
   traps: []
   normalShots: []
+  roundTime: 0
+  maxRoundTime: 60
+  breakTime: 0
+  maxBreakTime: 3
+  playerDied: 0
+  timer: {fileID: 2102832963}
+  starter: {fileID: 1792523359}
 --- !u!4 &1373360374
 Transform:
   m_ObjectHideFlags: 0
@@ -719,7 +733,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4846281520007350, guid: d5e1fde5a582fbc4fa7cf0aead60aa63, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114708760364074356, guid: d5e1fde5a582fbc4fa7cf0aead60aa63,
         type: 2}
@@ -740,3 +754,15 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 237470715}
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1792523359 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114141384823740862, guid: f4980b629bf394f74b72963d9b8c0259,
+    type: 2}
+  m_PrefabInternal: {fileID: 237470715}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &2102832963 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114682450011528884, guid: f4980b629bf394f74b72963d9b8c0259,
+    type: 2}
+  m_PrefabInternal: {fileID: 237470715}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}

@@ -117,7 +117,7 @@ public class PlayerController : MonoBehaviour
 			NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
 			ns.DoInit (this);
 		}
-        transform.Translate (move);
+        transform.Translate (move * moveSpeed * Time.deltaTime);
     }
 		
     public void ReceiveDamage(int dmg)
@@ -138,6 +138,8 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.identity;
         lifeTotal = 100;
         energyTotal = 0;
+        lifeSlider.value = lifeTotal;
+        energySlider.value = energyTotal;
     }
 
     public bool IsDead()

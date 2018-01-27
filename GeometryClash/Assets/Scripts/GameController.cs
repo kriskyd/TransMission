@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 public class GameController : MonoBehaviour
@@ -18,8 +19,9 @@ public class GameController : MonoBehaviour
 
     private Vector3 p1StartPos, p2StartPos;
     private int roundCount = 0, maxRounds = 3, p1WinCount = 0, p2WinCount = 0, maxWins = 2;
-    public float roundTime, maxRoundTime = 60f, breakTime, maxBreakTime = 5f;
+    public float roundTime, maxRoundTime = 60f, breakTime, maxBreakTime = 3f;
     public bool playerDied = false;
+    public Text timer, starter;
 
 
     void Start ()
@@ -56,7 +58,9 @@ public class GameController : MonoBehaviour
         switch (gameState)
         {
             case GameState.Start:
-                if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.M))
+                timer.text = ((int) maxRoundTime).ToString ();
+                starter.text = "Press A / M";
+                if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown (KeyCode.M))
                 {
                     RoundReset ();
                 }
@@ -64,6 +68,8 @@ public class GameController : MonoBehaviour
             case GameState.R1:
             case GameState.R2:
             case GameState.R3:
+                roundTime -= Time.deltaTime;
+                timer.text = ((int) roundTime + 1).ToString ();
                 playerOne.DoUpdate ();
                 playerTwo.DoUpdate ();
 
@@ -72,15 +78,20 @@ public class GameController : MonoBehaviour
             case GameState.B1:
             case GameState.B2:
             case GameState.B3:
+                starter.gameObject.SetActive (true);
                 breakTime -= Time.deltaTime;
+                starter.text = ((int) breakTime + 1).ToString ();
                 if (breakTime <= 0f)
                 {
+                    starter.gameObject.SetActive (false);
                     roundCount++;
                     gameState = nextRound;
                     breakTime = maxBreakTime;
                 }
                 break;
             case GameState.End:
+                starter.gameObject.SetActive (true);
+                starter.text = "Win";
                 if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown (KeyCode.M))
                 {
                     GameReset ();
