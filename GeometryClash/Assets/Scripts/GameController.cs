@@ -13,7 +13,6 @@ public class GameController : MonoBehaviour
 
     public PlayerController playerOne, playerTwo;
 
-    public List<Pickup> pickups;
     public List<TrapController> traps;
 
     private Vector3 p1StartPos, p2StartPos;
@@ -23,14 +22,13 @@ public class GameController : MonoBehaviour
     public Text timer, starter;
 
 
+	public GameObject pickupPrefab;
+	public float respawnTime = 0f, maxRespawnTime = 5f;
+
     void Start ()
     {
         Current = this;
-        pickups = FindObjectsOfType<Pickup> ().ToList ();
-        for (int i = 0; i < pickups.Count; i++)
-        {
-            pickups [i].DoInit ();
-        }
+    
 
         traps = FindObjectsOfType<TrapController> ().ToList ();
         for (int i = 0; i < traps.Count; i++)
@@ -42,6 +40,8 @@ public class GameController : MonoBehaviour
         playerOne.DoInit ();
         playerTwo.DoInit ();
 
+
+		RespawnPickups ();
 
 
         p1StartPos = playerOne.transform.position;
@@ -72,6 +72,10 @@ public class GameController : MonoBehaviour
                 playerTwo.DoUpdate ();
 
                 CheckForDeadPlayer ();
+
+				respawnTime -= Time.deltaTime;
+				if (respawnTime <= 0f)
+					RespawnPickups ();
                 break;
             case GameState.B1:
             case GameState.B2:
@@ -152,6 +156,31 @@ public class GameController : MonoBehaviour
 
         roundTime = maxRoundTime;
     }
+
+	private void RespawnPickups()
+	{
+		print("RespawnPickups " + respawnTime);
+		foreach (Pickup item in FindObjectsOfType<Pickup> ().ToList ())
+		{
+			Destroy (item.gameObject);
+		}
+
+
+		Vector3 position = new Vector3 (-5.0f, 6.0f, -1.0f);
+		Pickup pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
+
+		position = new Vector3 (5.0f, 6.0f, -1.0f);
+		pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
+
+		position = new Vector3 (5.0f, -6.0f, -1.0f);
+		pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
+
+		position = new Vector3 (-5.0f, -6.0f, -1.0f);
+		pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
+
+		respawnTime = maxRespawnTime;
+
+	}
 
     void EndGame (PlayerController winner)
     {

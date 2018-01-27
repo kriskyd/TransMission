@@ -105,6 +105,8 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag ("Pickup"))
         {
             ReceiveEnergy (other.GetComponent<Pickup> ().energy);
+			Destroy (other.gameObject);
+
         }
         else if (other.CompareTag ("Bullet"))
         {
