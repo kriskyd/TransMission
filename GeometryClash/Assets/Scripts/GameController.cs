@@ -13,24 +13,22 @@ public class GameController : MonoBehaviour
 
     public PlayerController playerOne, playerTwo;
 
-    public List<Pickup> pickups;
     public List<TrapController> traps;
 
     private Vector3 p1StartPos, p2StartPos;
     public int roundCount = 0, maxRounds = 3, p1WinCount = 0, p2WinCount = 0, maxWins = 2;
     public float roundTime, maxRoundTime = 60f, breakTime, maxBreakTime = 3f;
     public bool playerDied = false;
-    public Text timer, starter;
+    public Text timer, starter, p1WinText, p2WinText;
 
+
+	public GameObject pickupPrefab;
+	public float respawnTime = 0f, maxRespawnTime = 5f;
 
     void Start ()
     {
         Current = this;
-        pickups = FindObjectsOfType<Pickup> ().ToList ();
-        for (int i = 0; i < pickups.Count; i++)
-        {
-            pickups [i].DoInit ();
-        }
+    
 
         traps = FindObjectsOfType<TrapController> ().ToList ();
         for (int i = 0; i < traps.Count; i++)
@@ -43,11 +41,16 @@ public class GameController : MonoBehaviour
         playerTwo.DoInit ();
 
 
+		RespawnPickups ();
+
 
         p1StartPos = playerOne.transform.position;
         p2StartPos = playerTwo.transform.position;
         roundTime = maxRoundTime;
         breakTime = maxBreakTime;
+
+		p1WinText.text = "0";
+		p2WinText.text = "0";
 
     }
 
@@ -57,7 +60,7 @@ public class GameController : MonoBehaviour
         {
             case GameState.Start:
                 timer.text = ((int) maxRoundTime).ToString ();
-                starter.text = "Press A / M";
+                starter.text = "Start Game\nPress A / M";
                 if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown (KeyCode.M))
                 {
                     RoundReset ();
@@ -72,29 +75,38 @@ public class GameController : MonoBehaviour
                 playerTwo.DoUpdate ();
 
                 CheckForDeadPlayer ();
+
+				respawnTime -= Time.deltaTime;
+				if (respawnTime <= 0f)
+					RespawnPickups ();
                 break;
-            case GameState.B1:
-            case GameState.B2:
-            case GameState.B3:
-                starter.gameObject.SetActive (true);
-                breakTime -= Time.deltaTime;
-                starter.text = ((int) breakTime + 1).ToString ();
-                if (breakTime <= 0f)
-                {
-                    starter.gameObject.SetActive (false);
-                    roundCount++;
-                    gameState = nextRound;
-                    breakTime = maxBreakTime;
-                }
+		case GameState.B1:
+		case GameState.B2:
+		case GameState.B3:
+			starter.gameObject.SetActive (true);
+			breakTime -= Time.deltaTime;
+			starter.text = "Round " + (roundCount + 1).ToString() + "\n" + ((int)breakTime + 1).ToString ();
+			if (breakTime <= 0f) {
+				starter.gameObject.SetActive (false);
+				roundCount++;
+				gameState = nextRound;
+				breakTime = maxBreakTime;
+			}
+			p1WinText.text = p1WinCount.ToString ();
+			p2WinText.text = p2WinCount.ToString ();
+
                 break;
             case GameState.End:
-                starter.gameObject.SetActive (true);
-                starter.text = "Win";
-                if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown (KeyCode.M))
-                {
-                    GameReset ();
-                }
-                break;
+			starter.gameObject.SetActive (true);
+
+			string text = p1WinCount > p2WinCount ? "Kwadrat Wygrał" : "Koło wygrało";
+
+			starter.text = text;
+			if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown (KeyCode.M))
+			{
+				GameReset ();
+			}
+			break;
         }
     }
 
@@ -152,6 +164,31 @@ public class GameController : MonoBehaviour
 
         roundTime = maxRoundTime;
     }
+
+	private void RespawnPickups()
+	{
+		print("RespawnPickups " + respawnTime);
+		foreach (Pickup item in FindObjectsOfType<Pickup> ().ToList ())
+		{
+			Destroy (item.gameObject);
+		}
+
+
+		Vector3 position = new Vector3 (-5.0f, 6.0f, -1.0f);
+		Pickup pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
+
+		position = new Vector3 (5.0f, 6.0f, -1.0f);
+		pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
+
+		position = new Vector3 (5.0f, -6.0f, -1.0f);
+		pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
+
+		position = new Vector3 (-5.0f, -6.0f, -1.0f);
+		pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
+
+		respawnTime = maxRespawnTime;
+
+	}
 
     void EndGame (PlayerController winner)
     {
