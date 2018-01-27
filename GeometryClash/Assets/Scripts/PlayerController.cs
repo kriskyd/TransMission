@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed, rotateSpeed;
     Vector3 move, rotation;
 
+	public int lifeTotal;
+
     public void DoInit ()
     {
 
@@ -17,6 +19,12 @@ public class PlayerController : MonoBehaviour
     {
         Move ();
         Rotate ();
+
+
+
+
+		checkKeyboardMove ();
+
     }
 
     private void Move ()
@@ -25,7 +33,11 @@ public class PlayerController : MonoBehaviour
         move.y = -Input.GetAxisRaw (gameObject.name + " y-move");
         move *= moveSpeed;
 
-        transform.Translate (move, Space.World);
+		transform.Translate (move, Space.World);
+
+
+
+
     }
 
     private void Rotate ()
@@ -35,6 +47,36 @@ public class PlayerController : MonoBehaviour
         float angle = Vector2.SignedAngle (Vector2.right, rotation);
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
     }
+
+
+	private void checkKeyboardMove()
+	{
+		if (Input.GetKey (KeyCode.W)) {
+			move.y += Vector2.up.magnitude;
+		}
+		if (Input.GetKey (KeyCode.A)) {
+			move.x -= Vector2.left.magnitude;
+		}
+		if (Input.GetKey (KeyCode.S)) {
+			move.y -= Vector2.down.magnitude;
+		}
+		if (Input.GetKey (KeyCode.D)) {
+			move.x += Vector2.right.magnitude;
+		}
+		transform.Translate (move);
+	}
+
+
+	void OnTriggerEnter2D (Collider2D other)
+	{
+		print ("TAG " + other.gameObject.tag);
+		if (other.CompareTag ("Trap"))
+		{
+			this.lifeTotal -= 10;
+		}
+
+	}
+
 
 
 }
