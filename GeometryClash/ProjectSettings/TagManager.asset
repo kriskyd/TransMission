@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Trap
   - Arena
+  - Pickup
   layers:
   - Default
   - TransparentFX
