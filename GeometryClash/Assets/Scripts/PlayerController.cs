@@ -25,16 +25,15 @@ public class PlayerController : MonoBehaviour
         move.y = -Input.GetAxisRaw (gameObject.name + " y-move");
         move *= moveSpeed;
 
-        transform.Translate (move);
-
+        transform.Translate (move, Space.World);
     }
 
     private void Rotate ()
     {
         rotation.x = Input.GetAxisRaw (gameObject.name + " x-rotate");
         rotation.y = -Input.GetAxisRaw (gameObject.name + " y-rotate");
-
-        transform.rotation = Quaternion.LookRotation (rotation);
+        float angle = Vector2.SignedAngle (Vector2.right, rotation);
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
     }
 
 
