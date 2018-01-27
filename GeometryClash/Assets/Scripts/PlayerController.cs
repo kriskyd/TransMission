@@ -113,12 +113,28 @@ public class PlayerController : MonoBehaviour
     public void ReceiveDamage(int dmg)
     {
         lifeTotal -= dmg;
+        CheckIfDead ();
         print (lifeTotal);
     }
 
     public void ReceiveEnergy(int energy)
     {
         energyTotal += energy;
+    }
+
+    public void Reset (Vector3 position)
+    {
+        transform.position = position;
+        lifeTotal = 100;
+        energyTotal = 0;
+    }
+
+    private void CheckIfDead()
+    {
+        if (lifeTotal <= 0)
+        {
+
+        }
     }
 
 }
