@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   enemy: {fileID: 0}
-  speed: 10
+  speed: 15
   damage: 80
   state: 0
   size: 0

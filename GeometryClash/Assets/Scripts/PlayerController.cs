@@ -45,6 +45,18 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    public void Update ()
+    {
+        if (energyTotal == 100)
+        {
+            energySlider.transform.Find ("Fill Area").Find ("Fill").GetComponent<Image> ().color = Color.blue;
+        }
+        else
+        {
+            energySlider.transform.Find ("Fill Area").Find ("Fill").GetComponent<Image> ().color = Color.green;
+        }
+    }
+
     private void Move ()
     {
         move.x = Input.GetAxisRaw (gameObject.name + " x-move");
