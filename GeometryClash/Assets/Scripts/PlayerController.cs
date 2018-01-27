@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed, rotateSpeed;
     Vector3 move, rotation;
 
+	public int lifeTotal;
+
     public void DoInit ()
     {
 
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
         transform.Translate (move);
 
+		checkKeyboardMove ();
     }
 
     private void Rotate ()
@@ -36,6 +39,36 @@ public class PlayerController : MonoBehaviour
 
         transform.rotation = Quaternion.LookRotation (rotation);
     }
+
+
+	private void checkKeyboardMove()
+	{
+		if (Input.GetKey (KeyCode.W)) {
+			move.y += Vector2.up.magnitude;
+		}
+		if (Input.GetKey (KeyCode.A)) {
+			move.x -= Vector2.left.magnitude;
+		}
+		if (Input.GetKey (KeyCode.S)) {
+			move.y -= Vector2.down.magnitude;
+		}
+		if (Input.GetKey (KeyCode.D)) {
+			move.x += Vector2.right.magnitude;
+		}
+		transform.Translate (move);
+	}
+
+
+	void OnTriggerEnter2D (Collider2D other)
+	{
+		print ("TAG " + other.gameObject.tag);
+		if (other.CompareTag ("Trap"))
+		{
+			this.lifeTotal -= 10;
+		}
+
+	}
+
 
 
 }
