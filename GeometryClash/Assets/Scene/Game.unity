@@ -237,7 +237,8 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114894245864608564, guid: e604dd58413c04db5ae78b5e2ccaacde, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e604dd58413c04db5ae78b5e2ccaacde, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &353695005 stripped
@@ -324,7 +325,7 @@ Prefab:
     - target: {fileID: 114337516243211638, guid: 3313b7c7882336f46a203393a44af385,
         type: 2}
       propertyPath: moveSpeed
-      value: 0.1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1914768963299758, guid: 3313b7c7882336f46a203393a44af385, type: 2}
       propertyPath: m_Layer
@@ -512,53 +513,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1361993540
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4866470570911792, guid: 6476e936b7a79ad4a83ac7389a40b22c, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866470570911792, guid: 6476e936b7a79ad4a83ac7389a40b22c, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866470570911792, guid: 6476e936b7a79ad4a83ac7389a40b22c, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866470570911792, guid: 6476e936b7a79ad4a83ac7389a40b22c, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866470570911792, guid: 6476e936b7a79ad4a83ac7389a40b22c, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866470570911792, guid: 6476e936b7a79ad4a83ac7389a40b22c, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866470570911792, guid: 6476e936b7a79ad4a83ac7389a40b22c, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4866470570911792, guid: 6476e936b7a79ad4a83ac7389a40b22c, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 61769277666581060, guid: 6476e936b7a79ad4a83ac7389a40b22c,
-        type: 2}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6476e936b7a79ad4a83ac7389a40b22c, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &1373360372
 GameObject:
   m_ObjectHideFlags: 0
@@ -586,11 +540,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde50802ba6f08e48bd156425b811764, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: 0
+  nextRound: 0
   playerOne: {fileID: 822506401}
   playerTwo: {fileID: 438393338}
   pickups: []
   traps: []
   normalShots: []
+  roundTime: 0
+  maxRoundTime: 60
+  breakTime: 0
+  maxBreakTime: 3
+  playerDied: 0
 --- !u!4 &1373360374
 Transform:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed, rotateSpeed;
     Vector3 move, rotation;
     public GameObject normalShotPrefab;
-
+    public string name;
 
 
 
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void Update ()
+    public void DoUpdate ()
     {
         Move ();
         Rotate ();
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
     public void ReceiveDamage(int dmg)
     {
         lifeTotal -= dmg;
-        CheckIfDead ();
+        IsDead ();
         print (lifeTotal);
     }
 
@@ -130,16 +130,18 @@ public class PlayerController : MonoBehaviour
     public void Reset (Vector3 position)
     {
         transform.position = position;
+        transform.rotation = Quaternion.identity;
         lifeTotal = 100;
         energyTotal = 0;
     }
 
-    private void CheckIfDead()
+    public bool IsDead()
     {
         if (lifeTotal <= 0)
         {
-
+            return true;
         }
+        return false;
     }
 
 }
