@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114132838429435846}
   m_Layer: 0
   m_Name: SquareUltimate
-  m_TagString: Bullet
+  m_TagString: SquareUltimate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,6 +107,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbab0bc29b69841839e3e9f112718666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 0}
+  enemy: {fileID: 0}
+  speed: 5
+  damage: 80
 --- !u!212 &212838156585717188
 SpriteRenderer:
   m_ObjectHideFlags: 1

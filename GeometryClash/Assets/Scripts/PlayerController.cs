@@ -113,11 +113,11 @@ public class PlayerController : MonoBehaviour
                     su.DoInit (this);
                     break;
                 case Geometry.square:
-				SquareUltimate ulti = Instantiate (ultimateShotPrefab, transform.position, transform.rotation).GetComponent<SquareUltimate> ();
-				ulti.DoInit (this);
-				break;
-			}
-			energyTotal -= 100;
+                    SquareUltimate ulti = Instantiate (ultimateShotPrefab, transform.position - transform.right * 8f, transform.rotation).GetComponent<SquareUltimate> ();
+                    ulti.DoInit (this);
+                    break;
+            }
+            energyTotal -= 100;
         }
     }
 
@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag ("Pickup"))
         {
             ReceiveEnergy (other.GetComponent<Pickup> ().energy);
-			Destroy (other.gameObject);
+            Destroy (other.gameObject);
 
         }
         else if (other.CompareTag ("Bullet"))
@@ -151,13 +151,21 @@ public class PlayerController : MonoBehaviour
                 Destroy (other.gameObject);
             }
         }
-        else if (other.CompareTag("CircleUltimate"))
+        else if (other.CompareTag ("CircleUltimate"))
         {
             if (other.GetComponent<Bullet> ().parent != this)
             {
                 other.GetComponent<CircleUltimate> ().state = CircleUltimate.State.hit;
                 other.GetComponent<CircleUltimate> ().UseUltimate ();
                 GameController.Current.ultimatumInUse = true;
+            }
+        }
+        else if (other.CompareTag ("SquareUltimate"))
+        {
+            if (other.GetComponent<Bullet> ().parent != this)
+            {
+                ReceiveDamage (other.GetComponent<Bullet> ().damage);
+                Destroy (other.gameObject);
             }
         }
     }
@@ -212,7 +220,7 @@ public class PlayerController : MonoBehaviour
     public void Reset (Vector3 position)
     {
         transform.position = position;
-        transform.rotation = Quaternion.identity;
+        transform.eulerAngles = new Vector3(0, 0, 180f * (playerID - 1));
         lifeTotal = 100;
         lifeSlider.value = lifeTotal;
         superCD = 0f;
