@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public int energyTotal;
     public Slider lifeSlider;
     public Slider energySlider;
+    public float superCD = 0f, maxSuperCD = 5f;
 
     public void DoInit ()
     {
@@ -30,7 +31,9 @@ public class PlayerController : MonoBehaviour
         Move ();
         Rotate ();
         Shoot ();
-        SuperShoot ();
+        superCD -= Time.deltaTime;
+        if (superCD <= 0f)
+            SuperShoot ();
 
 
 
@@ -76,6 +79,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown ("joystick " + playerID.ToString () + " button 4"))
         {
+            superCD = maxSuperCD;
             switch (geometry)
             {
                 case Geometry.circle:
@@ -83,7 +87,7 @@ public class PlayerController : MonoBehaviour
                     ss.DoInit (this);
                     break;
                 case Geometry.square:
-                    NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
+                    NormalShot ns = Instantiate (superShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
                     ns.DoInit (this);
                     break;
             }
