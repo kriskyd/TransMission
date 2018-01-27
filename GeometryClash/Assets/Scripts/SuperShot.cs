@@ -6,11 +6,6 @@ public class SuperShot : Bullet
 {
     public float moveTime = 1f, lifeTime = 10f;
 
-    public void DoInit (PlayerController parent)
-    {
-        this.parent = parent;
-    }
-
     void Update ()
     {
         moveTime -= Time.deltaTime;

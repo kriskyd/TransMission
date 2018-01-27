@@ -5,11 +5,6 @@ using UnityEngine;
 public class NormalShot : Bullet
 {
 
-    public void DoInit (PlayerController parent)
-    {
-        this.parent = parent;
-    }
-
     public void Update ()
     {
         transform.Translate (transform.right * speed * Time.deltaTime, Space.World);

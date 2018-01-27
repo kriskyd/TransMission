@@ -109,7 +109,8 @@ public class PlayerController : MonoBehaviour
             switch (geometry)
             {
                 case Geometry.circle:
-
+                    CircleUltimate su = Instantiate (ultimateShotPrefab, transform.position, transform.rotation).GetComponent<CircleUltimate> ();
+                    su.DoInit (this);
                     break;
                 case Geometry.square:
 				SquareUltimate ulti = Instantiate (ultimateShotPrefab, transform.position, transform.rotation).GetComponent<SquareUltimate> ();
@@ -148,6 +149,13 @@ public class PlayerController : MonoBehaviour
             {
                 ReceiveDamage (other.GetComponent<Bullet> ().damage);
                 Destroy (other.gameObject);
+            }
+        }
+        else if (other.CompareTag("CircleUltimate"))
+        {
+            if (other.GetComponent<Bullet> ().parent != this)
+            {
+                other.GetComponent<CircleUltimate> ().state = CircleUltimate.State.hit;
             }
         }
     }
