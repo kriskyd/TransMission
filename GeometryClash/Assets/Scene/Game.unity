@@ -214,6 +214,16 @@ Prefab:
       propertyPath: m_Points.Array.data[2].x
       value: -3.0804195
       objectReference: {fileID: 0}
+    - target: {fileID: 212350610261131980, guid: e604dd58413c04db5ae78b5e2ccaacde,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: -1335186353
+      objectReference: {fileID: 0}
+    - target: {fileID: 212350610261131980, guid: e604dd58413c04db5ae78b5e2ccaacde,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e604dd58413c04db5ae78b5e2ccaacde, type: 2}
   m_IsPrefabParent: 0
@@ -254,7 +264,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4846281520007350, guid: d5e1fde5a582fbc4fa7cf0aead60aa63, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641621649023982, guid: d5e1fde5a582fbc4fa7cf0aead60aa63, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114708760364074356, guid: d5e1fde5a582fbc4fa7cf0aead60aa63,
+        type: 2}
+      propertyPath: moveSpeed
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5e1fde5a582fbc4fa7cf0aead60aa63, type: 2}
@@ -302,6 +321,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4824820638139676, guid: 3313b7c7882336f46a203393a44af385, type: 2}
       propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114337516243211638, guid: 3313b7c7882336f46a203393a44af385,
+        type: 2}
+      propertyPath: moveSpeed
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -464,6 +488,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOne: {fileID: 822506401}
   playerTwo: {fileID: 770553227}
+  pickups: []
+  traps: []
+  normalShots: []
 --- !u!4 &1373360374
 Transform:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void DoUpdate ()
+    void Update ()
     {
         Move ();
         Rotate ();
@@ -33,8 +33,8 @@ public class PlayerController : MonoBehaviour
     {
         move.x = Input.GetAxisRaw (gameObject.name + " x-move");
         move.y = -Input.GetAxisRaw (gameObject.name + " y-move");
-        move *= moveSpeed;
-
+        move *= moveSpeed * Time.deltaTime;
+        print (move);
 		transform.Translate (move, Space.World);
 
 
@@ -46,8 +46,11 @@ public class PlayerController : MonoBehaviour
     {
         rotation.x = Input.GetAxisRaw (gameObject.name + " x-rotate");
         rotation.y = -Input.GetAxisRaw (gameObject.name + " y-rotate");
-        float angle = Vector2.SignedAngle (Vector2.right, rotation);
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
+        if (Mathf.Abs (rotation.x) > 0.2 || Mathf.Abs (rotation.y) > 0.2)
+        {
+            float angle = Vector2.SignedAngle (Vector2.right, rotation);
+            transform.eulerAngles = new Vector3 (transform.eulerAngles.x, transform.eulerAngles.y, angle);
+        }
     }
 
     private void Shoot ()
@@ -62,6 +65,7 @@ public class PlayerController : MonoBehaviour
 
 	private void checkKeyboardMove()
 	{
+        move = Vector3.zero;
 		if (Input.GetKey (KeyCode.W)) {
 			move.y += Vector2.up.magnitude;
 		}
