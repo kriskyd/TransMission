@@ -10,7 +10,11 @@ public class PlayerController : MonoBehaviour
     public GameObject normalShotPrefab;
 
 
-    public int lifeTotal;
+
+
+
+	public int lifeTotal;
+	public int energyTotal;
 
     public void DoInit ()
     {
@@ -63,6 +67,48 @@ public class PlayerController : MonoBehaviour
     }
 
 
+<<<<<<< HEAD
+	private void checkKeyboardMove()
+	{
+		if (Input.GetKey (KeyCode.W)) {
+			move.x += Vector2.up.magnitude;
+		}
+		if (Input.GetKey (KeyCode.A)) {
+			move.y += Vector2.left.magnitude;
+		}
+		if (Input.GetKey (KeyCode.S)) {
+			move.x -= Vector2.down.magnitude;
+		}
+		if (Input.GetKey (KeyCode.D)) {
+			move.y -= Vector2.right.magnitude;
+		}
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
+			ns.DoInit (this);
+		}
+
+		transform.Translate (move);
+	}
+
+
+	void OnTriggerEnter2D (Collider2D other)
+	{
+		print ("TAG " + other.gameObject.tag);
+		if (other.CompareTag ("Trap"))
+		{
+			this.lifeTotal -= 10;
+		}
+		if (other.CompareTag ("Pickup"))
+		{
+			this.energyTotal += 10;
+		}
+		if (other.CompareTag ("Bullet"))
+		{
+			this.energyTotal -= 10;
+		}
+
+	}
+=======
     private void checkKeyboardMove ()
     {
         move = Vector3.zero;
@@ -95,6 +141,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+>>>>>>> develop
 
 
 
