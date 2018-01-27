@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
         superCD -= Time.deltaTime;
         if (superCD <= 0f)
             SuperShoot ();
-
+        if (energyTotal == 100)
+            UltimateShoot ();
 
 
         lifeSlider.value = lifeTotal;
@@ -141,9 +142,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag ("Bullet"))
         {
-            if (other.GetComponent<NormalShot> ().parent != this)
+            if (other.GetComponent<Bullet> ().parent != this)
             {
-                ReceiveDamage (other.GetComponent<NormalShot> ().damage);
+                ReceiveDamage (other.GetComponent<Bullet> ().damage);
                 Destroy (other.gameObject);
             }
         }

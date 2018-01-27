@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SquareUltimate : Bullet
+public class CircleUltimate : Bullet
 {
 
     void Start ()
