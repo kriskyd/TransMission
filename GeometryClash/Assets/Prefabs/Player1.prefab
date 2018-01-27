@@ -128,9 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a6a1e71f592d64a8f282a75727d728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  geometry: 1
   moveSpeed: 3
   rotateSpeed: 0
   normalShotPrefab: {fileID: 1769141436438386, guid: 6476e936b7a79ad4a83ac7389a40b22c,
+    type: 2}
+  superShotPrefab: {fileID: 1565404603158416, guid: ae4c9843feb2c44198eda6fbb5ed3890,
     type: 2}
   name: 
   playerID: 1
@@ -138,6 +141,8 @@ MonoBehaviour:
   energyTotal: 20
   lifeSlider: {fileID: 0}
   energySlider: {fileID: 0}
+  superCD: 0
+  maxSuperCD: 5
 --- !u!212 &212122618985111596
 SpriteRenderer:
   m_ObjectHideFlags: 1

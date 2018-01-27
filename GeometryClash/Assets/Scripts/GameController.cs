@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour
     private int roundCount = 0, maxRounds = 3, p1WinCount = 0, p2WinCount = 0, maxWins = 2;
     public float roundTime, maxRoundTime = 60f, breakTime, maxBreakTime = 3f;
     public bool playerDied = false;
-    public Text timer, starter;
+    public Text timer, starter, p1WinText, p2WinText;
 
 
 	public GameObject pickupPrefab;
@@ -49,6 +49,9 @@ public class GameController : MonoBehaviour
         roundTime = maxRoundTime;
         breakTime = maxBreakTime;
 
+		p1WinText.text = "0";
+		p2WinText.text = "0";
+
     }
 
     void Update ()
@@ -57,7 +60,7 @@ public class GameController : MonoBehaviour
         {
             case GameState.Start:
                 timer.text = ((int) maxRoundTime).ToString ();
-                starter.text = "Press A / M";
+                starter.text = "Start Game\nPress A / M";
                 if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown (KeyCode.M))
                 {
                     RoundReset ();
@@ -77,28 +80,33 @@ public class GameController : MonoBehaviour
 				if (respawnTime <= 0f)
 					RespawnPickups ();
                 break;
-            case GameState.B1:
-            case GameState.B2:
-            case GameState.B3:
-                starter.gameObject.SetActive (true);
-                breakTime -= Time.deltaTime;
-                starter.text = ((int) breakTime + 1).ToString ();
-                if (breakTime <= 0f)
-                {
-                    starter.gameObject.SetActive (false);
-                    roundCount++;
-                    gameState = nextRound;
-                    breakTime = maxBreakTime;
-                }
+		case GameState.B1:
+		case GameState.B2:
+		case GameState.B3:
+			starter.gameObject.SetActive (true);
+			breakTime -= Time.deltaTime;
+			starter.text = "Round " + (roundCount + 1).ToString() + "\n" + ((int)breakTime + 1).ToString ();
+			if (breakTime <= 0f) {
+				starter.gameObject.SetActive (false);
+				roundCount++;
+				gameState = nextRound;
+				breakTime = maxBreakTime;
+			}
+			p1WinText.text = p1WinCount.ToString ();
+			p2WinText.text = p2WinCount.ToString ();
+
                 break;
             case GameState.End:
-                starter.gameObject.SetActive (true);
-                starter.text = "Win";
-                if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown (KeyCode.M))
-                {
-                    GameReset ();
-                }
-                break;
+			starter.gameObject.SetActive (true);
+
+			string text = p1WinCount > p2WinCount ? "Kwadrat Wygrał" : "Koło wygrało";
+
+			starter.text = text;
+			if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown (KeyCode.M))
+			{
+				GameReset ();
+			}
+			break;
         }
     }
 
