@@ -65,7 +65,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1455562576909346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 0, z: 0}
+  m_LocalPosition: {x: -6, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4595291814819596}
@@ -134,6 +134,8 @@ MonoBehaviour:
   normalShotPrefab: {fileID: 1769141436438386, guid: 6476e936b7a79ad4a83ac7389a40b22c,
     type: 2}
   superShotPrefab: {fileID: 1565404603158416, guid: ae4c9843feb2c44198eda6fbb5ed3890,
+    type: 2}
+  ultimateShotPrefab: {fileID: 1494946510566378, guid: 14cd7d350d843437d9bfeea4f42c4445,
     type: 2}
   name: 
   playerID: 1
