@@ -128,10 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a6a1e71f592d64a8f282a75727d728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.1
+  moveSpeed: 3
   rotateSpeed: 0
   normalShotPrefab: {fileID: 1769141436438386, guid: 6476e936b7a79ad4a83ac7389a40b22c,
     type: 2}
+  name: 
+  playerID: 1
   lifeTotal: 100
   energyTotal: 20
   lifeSlider: {fileID: 0}
@@ -170,7 +172,7 @@ SpriteRenderer:
   m_SortingLayerID: 1722879321
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 365110b83f7234308ba3a0249640d120, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aa423052c3b404da4bb36793d12a05a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
