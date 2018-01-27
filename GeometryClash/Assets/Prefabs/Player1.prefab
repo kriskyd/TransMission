@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61031871209767512}
   m_Layer: 0
   m_Name: Player1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,8 @@ MonoBehaviour:
   rotateSpeed: 0
   normalShotPrefab: {fileID: 1769141436438386, guid: 6476e936b7a79ad4a83ac7389a40b22c,
     type: 2}
-  lifeTotal: 0
+  lifeTotal: 100
+  energyTotal: 0
 --- !u!212 &212122618985111596
 SpriteRenderer:
   m_ObjectHideFlags: 1

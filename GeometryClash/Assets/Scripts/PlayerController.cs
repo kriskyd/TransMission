@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
 
 	public int lifeTotal;
+	public int energyTotal;
 
     public void DoInit ()
     {
@@ -63,17 +64,22 @@ public class PlayerController : MonoBehaviour
 	private void checkKeyboardMove()
 	{
 		if (Input.GetKey (KeyCode.W)) {
-			move.y += Vector2.up.magnitude;
+			move.x += Vector2.up.magnitude;
 		}
 		if (Input.GetKey (KeyCode.A)) {
-			move.x -= Vector2.left.magnitude;
+			move.y += Vector2.left.magnitude;
 		}
 		if (Input.GetKey (KeyCode.S)) {
-			move.y -= Vector2.down.magnitude;
+			move.x -= Vector2.down.magnitude;
 		}
 		if (Input.GetKey (KeyCode.D)) {
-			move.x += Vector2.right.magnitude;
+			move.y -= Vector2.right.magnitude;
 		}
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
+			ns.DoInit (this);
+		}
+
 		transform.Translate (move);
 	}
 
@@ -84,6 +90,14 @@ public class PlayerController : MonoBehaviour
 		if (other.CompareTag ("Trap"))
 		{
 			this.lifeTotal -= 10;
+		}
+		if (other.CompareTag ("Pickup"))
+		{
+			this.energyTotal += 10;
+		}
+		if (other.CompareTag ("Bullet"))
+		{
+			this.energyTotal -= 10;
 		}
 
 	}
