@@ -36,6 +36,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4833538556887592}
   - component: {fileID: 68254834332567608}
+  - component: {fileID: 50659547103654012}
+  - component: {fileID: 114894245864608564}
   m_Layer: 0
   m_Name: Arena
   m_TagString: Arena
@@ -70,6 +72,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50659547103654012
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1257277140508580}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!68 &68254834332567608
 EdgeCollider2D:
   m_ObjectHideFlags: 1
@@ -90,6 +112,17 @@ EdgeCollider2D:
   - {x: -3.0804195, y: -1.5776894}
   - {x: -3.0794837, y: 1.596702}
   - {x: 3.0799599, y: 1.5859702}
+--- !u!114 &114894245864608564
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1257277140508580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e21b665aa5b0d92479a3979079c5b80d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212350610261131980
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -121,8 +154,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1335186353
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: df2a74fb23b1641fca6612ae353133b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
