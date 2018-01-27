@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed, rotateSpeed;
     Vector3 move, rotation;
+    public GameObject normalShotPrefab;
+
 
 	public int lifeTotal;
 
@@ -19,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         Move ();
         Rotate ();
-
+        Shoot ();
 
 
 
@@ -46,6 +48,15 @@ public class PlayerController : MonoBehaviour
         rotation.y = -Input.GetAxisRaw (gameObject.name + " y-rotate");
         float angle = Vector2.SignedAngle (Vector2.right, rotation);
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
+    }
+
+    private void Shoot ()
+    {
+        if (Input.GetAxisRaw(gameObject.name + " right-shot") > 0.5f)
+        {
+            NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
+            ns.DoInit (this);
+        }
     }
 
 
