@@ -66,19 +66,25 @@ public class GameController : MonoBehaviour
                     RoundReset ();
                 }
                 break;
-            case GameState.R1:
-            case GameState.R2:
-            case GameState.R3:
-                roundTime -= Time.deltaTime;
-                timer.text = ((int) roundTime + 1).ToString ();
-                playerOne.DoUpdate ();
-                playerTwo.DoUpdate ();
+		case GameState.R1:
+		case GameState.R2:
+		case GameState.R3:
+			roundTime -= Time.deltaTime;
+			timer.text = ((int)roundTime + 1).ToString ();
 
-                CheckForDeadPlayer ();
+			if (roundTime <= -1) {
+				CheckEndTime ();
+				break;
+			}
 
-				respawnTime -= Time.deltaTime;
-				if (respawnTime <= 0f)
-					RespawnPickups ();
+			playerOne.DoUpdate ();
+			playerTwo.DoUpdate ();
+
+			CheckForDeadPlayer ();
+
+			respawnTime -= Time.deltaTime;
+			if (respawnTime <= 0f)
+				RespawnPickups ();
                 break;
 		case GameState.B1:
 		case GameState.B2:
@@ -141,6 +147,34 @@ public class GameController : MonoBehaviour
         }
 
     }
+
+	private void CheckEndTime()
+	{
+		if (playerOne.lifeTotal >= playerTwo.lifeTotal)
+		{
+			p1WinCount++;
+		}
+		else
+		{
+			p2WinCount++;
+		}
+
+
+		if (p1WinCount == 2)
+		{
+			EndGame (playerOne);
+		}
+		else if (p2WinCount == 2)
+		{
+			EndGame (playerTwo);
+		}
+		else
+		{
+			RoundReset ();
+		}
+		playerDied = false;
+
+	}
 
     public void RoundReset ()
     {
