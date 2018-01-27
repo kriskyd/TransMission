@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed, rotateSpeed;
     Vector3 move, rotation;
+    public GameObject normalShotPrefab;
+
 
 	public int lifeTotal;
 
@@ -19,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         Move ();
         Rotate ();
-
+        Shoot ();
 
 
 
@@ -48,6 +50,15 @@ public class PlayerController : MonoBehaviour
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
     }
 
+    private void Shoot ()
+    {
+        if (Input.GetButtonDown(gameObject.name + " right-shot"))
+        {
+            NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
+            ns.DoInit (this);
+        }
+    }
+
 
 	private void checkKeyboardMove()
 	{
@@ -63,9 +74,7 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKey (KeyCode.D)) {
 			move.x += Vector2.right.magnitude;
 		}
-		move *= moveSpeed;
-
-		GetComponent<Rigidbody2D> ().MovePosition (transform.position + move);
+		transform.Translate (move);
 	}
 
 
