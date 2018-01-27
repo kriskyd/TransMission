@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
+  enemy: {fileID: 0}
   speed: 10
-  damage: 10
+  damage: 30
 --- !u!212 &212260498973679316
 SpriteRenderer:
   m_ObjectHideFlags: 1

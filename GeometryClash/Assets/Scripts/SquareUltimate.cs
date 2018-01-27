@@ -5,15 +5,6 @@ using UnityEngine;
 public class SquareUltimate : Bullet
 {
 
-	public PlayerController parent;
-	public float speed = 5;
-	public int damage = 80;
-
-	public void DoInit (PlayerController parent)
-	{
-		this.parent = parent;
-	}
-
 	public void Update ()
 	{
 		transform.Translate (transform.right * speed * Time.deltaTime, Space.World);

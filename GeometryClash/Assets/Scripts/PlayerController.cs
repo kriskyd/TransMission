@@ -156,6 +156,8 @@ public class PlayerController : MonoBehaviour
             if (other.GetComponent<Bullet> ().parent != this)
             {
                 other.GetComponent<CircleUltimate> ().state = CircleUltimate.State.hit;
+                other.GetComponent<CircleUltimate> ().UseUltimate ();
+                GameController.Current.ultimatumInUse = true;
             }
         }
     }

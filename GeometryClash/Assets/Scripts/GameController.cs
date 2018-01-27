@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
     private Vector3 p1StartPos, p2StartPos;
     public int roundCount = 0, maxRounds = 3, p1WinCount = 0, p2WinCount = 0, maxWins = 2;
     public float roundTime, maxRoundTime = 60f, breakTime, maxBreakTime = 3f;
-    public bool playerDied = false;
+    public bool playerDied = false, ultimatumInUse = false;
     public Text timer, starter, p1WinText, p2WinText;
 
 
@@ -76,9 +76,11 @@ public class GameController : MonoBehaviour
 				CheckEndTime ();
 				break;
 			}
-
-			playerOne.DoUpdate ();
-			playerTwo.DoUpdate ();
+                if (!ultimatumInUse)
+                {
+                    playerOne.DoUpdate ();
+                    playerTwo.DoUpdate ();
+                }
 
 			CheckForDeadPlayer ();
 
