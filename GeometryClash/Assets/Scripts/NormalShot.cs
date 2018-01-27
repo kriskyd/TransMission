@@ -18,5 +18,15 @@ public class NormalShot : MonoBehaviour
         transform.Translate (transform.right * speed * Time.deltaTime, Space.World);
     }
 
+    private void OnCollisionEnter2D (Collision2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Player":
+                if (collision.gameObject != parent)
+                    ;//                    collision.gameObject.GetComponent<PlayerController>().
+                break;
+        }
+    }
 
 }

@@ -36,6 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4083630660207020}
   - component: {fileID: 114605911596952714}
+  - component: {fileID: 58837957657112224}
   m_Layer: 0
   m_Name: CircleShot
   m_TagString: Untagged
@@ -51,7 +52,7 @@ Transform:
   m_GameObject: {fileID: 1945069028937596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4100759725937806}
   m_Father: {fileID: 0}
@@ -65,11 +66,26 @@ Transform:
   m_GameObject: {fileID: 1336302715552306}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 4083630660207020}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &58837957657112224
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1945069028937596}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &114605911596952714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74b0ffae5683115428b602b374088042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
 --- !u!212 &212260498973679316
 SpriteRenderer:
   m_ObjectHideFlags: 1
