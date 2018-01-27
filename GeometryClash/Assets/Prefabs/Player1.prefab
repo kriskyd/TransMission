@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01a6a1e71f592d64a8f282a75727d728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 0.1
   rotateSpeed: 0
   normalShotPrefab: {fileID: 1769141436438386, guid: 6476e936b7a79ad4a83ac7389a40b22c,
     type: 2}
