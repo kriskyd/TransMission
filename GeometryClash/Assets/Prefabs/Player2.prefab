@@ -123,7 +123,9 @@ MonoBehaviour:
   normalShotPrefab: {fileID: 1945069028937596, guid: fb1b1411a8660c241b6e6116f576c749,
     type: 2}
   lifeTotal: 100
-  energyTotal: 0
+  energyTotal: 20
+  lifeSlider: {fileID: 0}
+  energySlider: {fileID: 0}
 --- !u!212 &212794745535429128
 SpriteRenderer:
   m_ObjectHideFlags: 1
