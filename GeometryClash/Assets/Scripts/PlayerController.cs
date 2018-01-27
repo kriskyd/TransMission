@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public GameObject normalShotPrefab;
 
 
+
+
+
 	public int lifeTotal;
 	public int energyTotal;
 
@@ -18,7 +21,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void DoUpdate ()
+    void Update ()
     {
         Move ();
         Rotate ();
@@ -26,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-		checkKeyboardMove ();
+        checkKeyboardMove ();
 
     }
 
@@ -34,9 +37,9 @@ public class PlayerController : MonoBehaviour
     {
         move.x = Input.GetAxisRaw (gameObject.name + " x-move");
         move.y = -Input.GetAxisRaw (gameObject.name + " y-move");
-        move *= moveSpeed;
-
-		transform.Translate (move, Space.World);
+        move *= moveSpeed * Time.deltaTime;
+        print (move);
+        transform.Translate (move, Space.World);
 
 
 
@@ -47,13 +50,16 @@ public class PlayerController : MonoBehaviour
     {
         rotation.x = Input.GetAxisRaw (gameObject.name + " x-rotate");
         rotation.y = -Input.GetAxisRaw (gameObject.name + " y-rotate");
-        float angle = Vector2.SignedAngle (Vector2.right, rotation);
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, angle);
+        if (Mathf.Abs (rotation.x) > 0.2 || Mathf.Abs (rotation.y) > 0.2)
+        {
+            float angle = Vector2.SignedAngle (Vector2.right, rotation);
+            transform.eulerAngles = new Vector3 (transform.eulerAngles.x, transform.eulerAngles.y, angle);
+        }
     }
 
     private void Shoot ()
     {
-        if (Input.GetButtonDown(gameObject.name + " right-shot"))
+        if (Input.GetButtonDown (gameObject.name + " right-shot"))
         {
             NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
             ns.DoInit (this);
@@ -61,6 +67,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
+<<<<<<< HEAD
 	private void checkKeyboardMove()
 	{
 		if (Input.GetKey (KeyCode.W)) {
@@ -101,6 +108,40 @@ public class PlayerController : MonoBehaviour
 		}
 
 	}
+=======
+    private void checkKeyboardMove ()
+    {
+        move = Vector3.zero;
+        if (Input.GetKey (KeyCode.W))
+        {
+            move.y += Vector2.up.magnitude;
+        }
+        if (Input.GetKey (KeyCode.A))
+        {
+            move.x -= Vector2.left.magnitude;
+        }
+        if (Input.GetKey (KeyCode.S))
+        {
+            move.y -= Vector2.down.magnitude;
+        }
+        if (Input.GetKey (KeyCode.D))
+        {
+            move.x += Vector2.right.magnitude;
+        }
+        transform.Translate (move);
+    }
+
+
+    void OnTriggerEnter2D (Collider2D other)
+    {
+        print ("TAG " + other.gameObject.tag);
+        if (other.CompareTag ("Trap"))
+        {
+            this.lifeTotal -= 10;
+        }
+
+    }
+>>>>>>> develop
 
 
 
