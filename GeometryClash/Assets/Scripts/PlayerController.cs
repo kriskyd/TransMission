@@ -113,9 +113,9 @@ public class PlayerController : MonoBehaviour
                     su.DoInit (this);
                     break;
                 case Geometry.square:
-				SquareUltimate ulti = Instantiate (ultimateShotPrefab, transform.position, transform.rotation).GetComponent<SquareUltimate> ();
-				ulti.DoInit (this);
-				break;
+					SquareUltimate ulti = Instantiate (ultimateShotPrefab, transform.position, transform.rotation).GetComponent<SquareUltimate> ();
+					ulti.DoInit (this);
+					break;
 			}
 			energyTotal -= 100;
         }
