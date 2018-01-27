@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
 
     public int lifeTotal;
-    public int energyTotal;
+    public int energyTotal = 15;
     public Slider lifeSlider;
     public Slider energySlider;
     public float superCD = 0f, maxSuperCD = 5f;
@@ -156,6 +157,13 @@ public class PlayerController : MonoBehaviour
     public void ReceiveEnergy (int energy)
     {
         energyTotal += energy;
+        energyTotal = energyTotal > 100 ? 100 : energyTotal;
+    }
+
+    public void UseEnergy (int energy)
+    {
+        energyTotal -= energy;
+        energyTotal = energyTotal < 0 ? 0 : energyTotal;
     }
 
     public void Reset (Vector3 position)
@@ -165,7 +173,11 @@ public class PlayerController : MonoBehaviour
         lifeTotal = 100;
         energyTotal = 0;
         lifeSlider.value = lifeTotal;
-        energySlider.value = energyTotal;
+        energySlider.value = 15;
+        foreach (NormalShot ns in FindObjectsOfType<NormalShot> ().ToList ())
+        {
+            Destroy (ns.gameObject);
+        }
     }
 
     public bool IsDead ()
