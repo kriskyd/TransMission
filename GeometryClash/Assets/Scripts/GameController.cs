@@ -164,6 +164,11 @@ public class GameController : MonoBehaviour
         playerTwo.Reset (p2StartPos);
 
         roundTime = maxRoundTime;
+
+        foreach (Bullet b in FindObjectsOfType<Bullet>().ToList())
+        {
+            Destroy (b.gameObject);
+        }
     }
 
 	private void RespawnPickups()
@@ -204,6 +209,12 @@ public class GameController : MonoBehaviour
         roundTime = maxRoundTime;
         p1WinCount = p2WinCount = 0;
         gameState = GameState.Start;
+
+        foreach (Bullet b in FindObjectsOfType<Bullet> ().ToList ())
+        {
+            Destroy (b.gameObject);
+        }
+
     }
 
 
