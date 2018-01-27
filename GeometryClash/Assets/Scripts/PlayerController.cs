@@ -107,6 +107,11 @@ public class PlayerController : MonoBehaviour
         {
             move.x += Vector2.right.magnitude;
         }
+		if (Input.GetKey (KeyCode.Space))
+		{
+			NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
+			ns.DoInit (this);
+		}
         transform.Translate (move);
     }
 		

@@ -21,8 +21,19 @@ public class NormalShot : MonoBehaviour
 
     private void OnCollisionEnter2D (Collision2D collision)
     {
+		print ("TAG " + collision.gameObject.tag);
+
         if (collision.gameObject.tag == "Arena")
             Destroy (gameObject);
     }
+
+
+	void OnBecameInvisible() {
+		print ("OnBecameInvisible");
+
+		// Destroy the bullet 
+		Destroy(gameObject);
+	} 
+
 
 }
