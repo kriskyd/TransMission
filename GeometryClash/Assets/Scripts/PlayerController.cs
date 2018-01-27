@@ -74,7 +74,9 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKey (KeyCode.D)) {
 			move.x += Vector2.right.magnitude;
 		}
-		transform.Translate (move);
+		move *= moveSpeed;
+
+		GetComponent<Rigidbody2D> ().MovePosition (transform.position + move);
 	}
 
 
