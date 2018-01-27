@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrapController : MonoBehaviour
 {
-
+    public int damage;
     public void DoInit ()
     {
 

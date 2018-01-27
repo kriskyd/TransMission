@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class NormalShot : MonoBehaviour
 {
-    PlayerController parent;
+    public PlayerController parent;
     public float speed;
+    public int damage;
 
     public void DoInit (PlayerController parent)
     {
@@ -20,13 +21,8 @@ public class NormalShot : MonoBehaviour
 
     private void OnCollisionEnter2D (Collision2D collision)
     {
-        switch (collision.gameObject.tag)
-        {
-            case "Player":
-                if (collision.gameObject != parent)
-                    ;//                    collision.gameObject.GetComponent<PlayerController>().
-                break;
-        }
+        if (collision.gameObject.tag == "Arena")
+            Destroy (gameObject);
     }
 
 }

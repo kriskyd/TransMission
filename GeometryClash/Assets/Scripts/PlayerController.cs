@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
         move.x = Input.GetAxisRaw (gameObject.name + " x-move");
         move.y = -Input.GetAxisRaw (gameObject.name + " y-move");
         move *= moveSpeed * Time.deltaTime;
-        print (move);
         transform.Translate (move, Space.World);
 
 
@@ -69,21 +68,26 @@ public class PlayerController : MonoBehaviour
 
 	void OnTriggerEnter2D (Collider2D other)
 	{
-		print ("TAG " + other.gameObject.tag);
+		//print ("TAG " + other.gameObject.tag);
 		if (other.CompareTag ("Trap"))
 		{
-			this.lifeTotal -= 10;
+            ReceiveDamage (other.GetComponent<TrapController> ().damage);
 		}
-		if (other.CompareTag ("Pickup"))
+		else if (other.CompareTag ("Pickup"))
 		{
-			this.energyTotal += 10;
-		}
-		if (other.CompareTag ("Bullet"))
-		{
-			this.energyTotal -= 10;
-		}
+            ReceiveEnergy (other.GetComponent<Pickup> ().energy);
+        }
+        else if (other.CompareTag ("Bullet"))
+        {
+            if (other.GetComponent<NormalShot> ().parent != this)
+            {
+                ReceiveDamage (other.GetComponent<NormalShot> ().damage);
+                Destroy (other.gameObject);
+            }
+        }
+    }
 
-	}
+
 	private void checkKeyboardMove ()
     {
         move = Vector3.zero;
@@ -106,7 +110,15 @@ public class PlayerController : MonoBehaviour
         transform.Translate (move);
     }
 		
+    public void ReceiveDamage(int dmg)
+    {
+        lifeTotal -= dmg;
+        print (lifeTotal);
+    }
 
-
+    public void ReceiveEnergy(int energy)
+    {
+        energyTotal += energy;
+    }
 
 }
