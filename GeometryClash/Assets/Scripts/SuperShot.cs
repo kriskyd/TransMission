@@ -2,15 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SuperShot : MonoBehaviour {
+public class SuperShot : MonoBehaviour
+{
+    public PlayerController parent;
+    public float speed;
+    public int damage;
+    public float moveTime = 1f, lifeTime = 10f;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void DoInit (PlayerController parent)
+    {
+        this.parent = parent;
+    }
+
+    void Update ()
+    {
+        moveTime -= Time.deltaTime;
+        lifeTime -= Time.deltaTime;
+        if (moveTime > 0f)
+            transform.Translate (transform.right * speed * Time.deltaTime, Space.World);
+        if (lifeTime < 0f)
+            Destroy (gameObject);
+    }
 }

@@ -5,19 +5,20 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
+    public enum Geometry { triangle, square, circle }
+    public Geometry geometry;
     public float moveSpeed, rotateSpeed;
     Vector3 move, rotation;
-    public GameObject normalShotPrefab;
+    public GameObject normalShotPrefab, superShotPrefab;
     public string name;
     public int playerID;
 
 
 
-	public int lifeTotal;
-	public int energyTotal;
-	public Slider lifeSlider;
-	public Slider energySlider;
+    public int lifeTotal;
+    public int energyTotal;
+    public Slider lifeSlider;
+    public Slider energySlider;
 
     public void DoInit ()
     {
@@ -29,11 +30,12 @@ public class PlayerController : MonoBehaviour
         Move ();
         Rotate ();
         Shoot ();
+        SuperShoot ();
 
 
 
-		lifeSlider.value = lifeTotal;
-		energySlider.value = energyTotal;
+        lifeSlider.value = lifeTotal;
+        energySlider.value = energyTotal;
         checkKeyboardMove ();
 
     }
@@ -63,24 +65,41 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot ()
     {
-        //if (Input.GetButtonDown (gameObject.name + " right-shot"))
-        if (Input.GetKeyDown("joystick " + playerID.ToString () + " button 5"))
+        if (Input.GetKeyDown ("joystick " + playerID.ToString () + " button 5"))
         {
             NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
             ns.DoInit (this);
         }
     }
 
+    private void SuperShoot ()
+    {
+        if (Input.GetKeyDown ("joystick " + playerID.ToString () + " button 4"))
+        {
+            switch (geometry)
+            {
+                case Geometry.circle:
+                    SuperShot ss = Instantiate (superShotPrefab, transform.position, transform.rotation).GetComponent<SuperShot> ();
+                    ss.DoInit (this);
+                    break;
+                case Geometry.square:
+                    NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
+                    ns.DoInit (this);
+                    break;
+            }
+        }
+    }
 
-	void OnTriggerEnter2D (Collider2D other)
-	{
-		//print ("TAG " + other.gameObject.tag);
-		if (other.CompareTag ("Trap"))
-		{
+
+    void OnTriggerEnter2D (Collider2D other)
+    {
+        //print ("TAG " + other.gameObject.tag);
+        if (other.CompareTag ("Trap"))
+        {
             ReceiveDamage (other.GetComponent<TrapController> ().damage);
-		}
-		else if (other.CompareTag ("Pickup"))
-		{
+        }
+        else if (other.CompareTag ("Pickup"))
+        {
             ReceiveEnergy (other.GetComponent<Pickup> ().energy);
         }
         else if (other.CompareTag ("Bullet"))
@@ -94,7 +113,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-	private void checkKeyboardMove ()
+    private void checkKeyboardMove ()
     {
         move = Vector3.zero;
         if (Input.GetKey (KeyCode.W))
@@ -113,22 +132,22 @@ public class PlayerController : MonoBehaviour
         {
             move.x += Vector2.right.magnitude;
         }
-		if (Input.GetKey (KeyCode.Space))
-		{
-			NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
-			ns.DoInit (this);
-		}
+        if (Input.GetKey (KeyCode.Space))
+        {
+            NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
+            ns.DoInit (this);
+        }
         transform.Translate (move * moveSpeed * Time.deltaTime);
     }
-		
-    public void ReceiveDamage(int dmg)
+
+    public void ReceiveDamage (int dmg)
     {
         lifeTotal -= dmg;
         IsDead ();
         print (lifeTotal);
     }
 
-    public void ReceiveEnergy(int energy)
+    public void ReceiveEnergy (int energy)
     {
         energyTotal += energy;
     }
@@ -143,7 +162,7 @@ public class PlayerController : MonoBehaviour
         energySlider.value = energyTotal;
     }
 
-    public bool IsDead()
+    public bool IsDead ()
     {
         if (lifeTotal <= 0)
         {

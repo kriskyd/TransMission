@@ -11,7 +11,6 @@ public class NormalShot : MonoBehaviour
     public void DoInit (PlayerController parent)
     {
         this.parent = parent;
-        GameController.Current.normalShots.Add (this);
     }
 
     public void Update ()

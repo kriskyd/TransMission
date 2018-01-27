@@ -15,7 +15,6 @@ public class GameController : MonoBehaviour
 
     public List<Pickup> pickups;
     public List<TrapController> traps;
-    public List<NormalShot> normalShots;
 
     private Vector3 p1StartPos, p2StartPos;
     private int roundCount = 0, maxRounds = 3, p1WinCount = 0, p2WinCount = 0, maxWins = 2;
@@ -39,7 +38,6 @@ public class GameController : MonoBehaviour
             traps [i].DoInit ();
         }
 
-        normalShots = new List<NormalShot> ();
 
         playerOne.DoInit ();
         playerTwo.DoInit ();
