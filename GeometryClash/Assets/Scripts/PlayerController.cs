@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public GameObject normalShotPrefab;
 
 
-	public int lifeTotal;
+    public int lifeTotal;
 
     public void DoInit ()
     {
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-		checkKeyboardMove ();
+        checkKeyboardMove ();
 
     }
 
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         move.y = -Input.GetAxisRaw (gameObject.name + " y-move");
         move *= moveSpeed * Time.deltaTime;
         print (move);
-		transform.Translate (move, Space.World);
+        transform.Translate (move, Space.World);
 
 
 
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 
     private void Shoot ()
     {
-        if (Input.GetButtonDown(gameObject.name + " right-shot"))
+        if (Input.GetButtonDown (gameObject.name + " right-shot"))
         {
             NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
             ns.DoInit (this);
@@ -63,34 +63,38 @@ public class PlayerController : MonoBehaviour
     }
 
 
-	private void checkKeyboardMove()
-	{
+    private void checkKeyboardMove ()
+    {
         move = Vector3.zero;
-		if (Input.GetKey (KeyCode.W)) {
-			move.y += Vector2.up.magnitude;
-		}
-		if (Input.GetKey (KeyCode.A)) {
-			move.x -= Vector2.left.magnitude;
-		}
-		if (Input.GetKey (KeyCode.S)) {
-			move.y -= Vector2.down.magnitude;
-		}
-		if (Input.GetKey (KeyCode.D)) {
-			move.x += Vector2.right.magnitude;
-		}
-		transform.Translate (move);
-	}
+        if (Input.GetKey (KeyCode.W))
+        {
+            move.y += Vector2.up.magnitude;
+        }
+        if (Input.GetKey (KeyCode.A))
+        {
+            move.x -= Vector2.left.magnitude;
+        }
+        if (Input.GetKey (KeyCode.S))
+        {
+            move.y -= Vector2.down.magnitude;
+        }
+        if (Input.GetKey (KeyCode.D))
+        {
+            move.x += Vector2.right.magnitude;
+        }
+        transform.Translate (move);
+    }
 
 
-	void OnTriggerEnter2D (Collider2D other)
-	{
-		print ("TAG " + other.gameObject.tag);
-		if (other.CompareTag ("Trap"))
-		{
-			this.lifeTotal -= 10;
-		}
+    void OnTriggerEnter2D (Collider2D other)
+    {
+        print ("TAG " + other.gameObject.tag);
+        if (other.CompareTag ("Trap"))
+        {
+            this.lifeTotal -= 10;
+        }
 
-	}
+    }
 
 
 

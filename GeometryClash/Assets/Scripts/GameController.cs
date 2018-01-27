@@ -16,17 +16,19 @@ public class GameController : MonoBehaviour
 
     void Start ()
     {
+        Current = this;
         pickups = FindObjectsOfType<Pickup> ().ToList ();
-        for (int i=0; i < pickups.Count; i++)
+        for (int i = 0; i < pickups.Count; i++)
         {
-            pickups[i].DoInit ();
+            pickups [i].DoInit ();
         }
 
         traps = FindObjectsOfType<TrapController> ().ToList ();
         for (int i = 0; i < traps.Count; i++)
         {
-            traps[i].DoInit ();
+            traps [i].DoInit ();
         }
+        normalShots = new List<NormalShot> ();
 
         playerOne.DoInit ();
         playerTwo.DoInit ();
