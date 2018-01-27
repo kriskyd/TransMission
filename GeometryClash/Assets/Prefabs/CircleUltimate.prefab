@@ -160,8 +160,10 @@ MonoBehaviour:
   parent: {fileID: 0}
   enemy: {fileID: 0}
   speed: 10
-  damage: 50
+  damage: 80
   state: 0
+  size: 0
+  timeToSize: 3.8
 --- !u!212 &212286972953388614
 SpriteRenderer:
   m_ObjectHideFlags: 1

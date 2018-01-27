@@ -420,13 +420,13 @@ Prefab:
     - target: {fileID: 114337516243211638, guid: 3313b7c7882336f46a203393a44af385,
         type: 2}
       propertyPath: geometry
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114337516243211638, guid: 3313b7c7882336f46a203393a44af385,
         type: 2}
       propertyPath: ultimateShotPrefab
       value: 
-      objectReference: {fileID: 1902506769414978, guid: a7f70f721cd57de4ea1c1500a49754fc,
+      objectReference: {fileID: 1494946510566378, guid: 14cd7d350d843437d9bfeea4f42c4445,
         type: 2}
     - target: {fileID: 114337516243211638, guid: 3313b7c7882336f46a203393a44af385,
         type: 2}
@@ -622,6 +622,7 @@ MonoBehaviour:
   breakTime: 0
   maxBreakTime: 3
   playerDied: 0
+  ultimatumInUse: 0
   timer: {fileID: 2102832963}
   starter: {fileID: 1792523359}
   p1WinText: {fileID: 237470717}
@@ -760,6 +761,23 @@ Prefab:
       propertyPath: energySlider
       value: 
       objectReference: {fileID: 1565217790}
+    - target: {fileID: 114708760364074356, guid: d5e1fde5a582fbc4fa7cf0aead60aa63,
+        type: 2}
+      propertyPath: geometry
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114708760364074356, guid: d5e1fde5a582fbc4fa7cf0aead60aa63,
+        type: 2}
+      propertyPath: superShotPrefab
+      value: 
+      objectReference: {fileID: 1172958954930660, guid: 5cf56c2b311856243a601964a7a5ae55,
+        type: 2}
+    - target: {fileID: 114708760364074356, guid: d5e1fde5a582fbc4fa7cf0aead60aa63,
+        type: 2}
+      propertyPath: ultimateShotPrefab
+      value: 
+      objectReference: {fileID: 1902506769414978, guid: a7f70f721cd57de4ea1c1500a49754fc,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5e1fde5a582fbc4fa7cf0aead60aa63, type: 2}
   m_IsPrefabParent: 0
