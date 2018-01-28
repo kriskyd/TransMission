@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public AudioSource koloSource, kwadratSource;
     // standard
-    public AudioClip [] startGry, wstep, startRundy1, startRundy2, startRundy3, koniecWalki;
+    public AudioClip [] startGry, wstep, 
+        startRundy1,
+        startRundy2Kolo, startRundy2Kwadrat,
+        startRundy3Kolo, startRundy3Kwadrat,
+        koniecWalkiKolo, koniecWalkiKwadrat;
 
 
     void Start ()

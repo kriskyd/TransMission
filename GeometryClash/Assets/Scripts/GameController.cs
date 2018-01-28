@@ -7,6 +7,7 @@ using System.Linq;
 public class GameController : MonoBehaviour
 {
     public static GameController Current;
+    public AudioManager audioManager;
 
     public enum GameState { Start, R1, B1, R2, B2, R3, B3, End }
     public GameState gameState, nextRound;
@@ -16,7 +17,7 @@ public class GameController : MonoBehaviour
     public List<TrapController> traps;
 
     private Vector3 p1StartPos, p2StartPos;
-    public int roundCount = 0, maxRounds = 3, p1WinCount = 0, p2WinCount = 0, maxWins = 2;
+    public int roundCount = 0, maxRounds = 3, p1WinCount = 0, p2WinCount = 0, maxWins = 2, roundWinner = 0;
     public float roundTime, maxRoundTime = 60f, breakTime, maxBreakTime = 3f;
     public bool playerDied = false, ultimatumInUse = false;
     public Text timer, starter, p1WinText, p2WinText;
@@ -122,11 +123,28 @@ public class GameController : MonoBehaviour
         {
             p2WinCount++;
             playerDied = true;
+            roundWinner = 2;
+            // audio
+            if (roundCount == 1)
+                audioManager.koloSource.PlayOneShot (audioManager.startRundy2Kolo [Random.Range(0, audioManager.startRundy2Kolo.Length)]);
+            else if (roundCount == 2 && p2WinCount != 2)
+                audioManager.koloSource.PlayOneShot (audioManager.startRundy3Kolo [Random.Range (0, audioManager.startRundy3Kolo.Length)]);
+            else if (roundCount == 3 || p2WinCount == 2)
+                audioManager.koloSource.PlayOneShot (audioManager.koniecWalkiKolo [Random.Range (0, audioManager.koniecWalkiKolo.Length)]);
+
         }
         else if (playerTwo.IsDead ())
         {
             p1WinCount++;
             playerDied = true;
+            roundWinner = 1;
+            // audio
+            if (roundCount == 1)
+                audioManager.kwadratSource.PlayOneShot (audioManager.startRundy2Kwadrat [Random.Range (0, audioManager.startRundy2Kwadrat.Length)]);
+            else if (roundCount == 2 && p1WinCount != 2)
+                audioManager.kwadratSource.PlayOneShot (audioManager.startRundy3Kwadrat [Random.Range (0, audioManager.startRundy3Kwadrat.Length)]);
+            else if (roundCount == 3 || p2WinCount == 2)
+                audioManager.kwadratSource.PlayOneShot (audioManager.koniecWalkiKwadrat [Random.Range (0, audioManager.koniecWalkiKwadrat.Length)]);
         }
 
         if (playerDied)
