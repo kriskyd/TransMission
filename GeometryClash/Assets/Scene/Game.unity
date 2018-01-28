@@ -254,12 +254,12 @@ Prefab:
     - target: {fileID: 224897803213245828, guid: f4980b629bf394f74b72963d9b8c0259,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -57
       objectReference: {fileID: 0}
     - target: {fileID: 224537663718352452, guid: f4980b629bf394f74b72963d9b8c0259,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -67.5
       objectReference: {fileID: 0}
     - target: {fileID: 223043406320651388, guid: f4980b629bf394f74b72963d9b8c0259,
         type: 2}
@@ -279,12 +279,12 @@ Prefab:
     - target: {fileID: 224896670744745690, guid: f4980b629bf394f74b72963d9b8c0259,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 33.600006
       objectReference: {fileID: 0}
     - target: {fileID: 224807027047769288, guid: f4980b629bf394f74b72963d9b8c0259,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 224966546949888262, guid: f4980b629bf394f74b72963d9b8c0259,
         type: 2}
@@ -299,12 +299,12 @@ Prefab:
     - target: {fileID: 224350889477108626, guid: f4980b629bf394f74b72963d9b8c0259,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 224237079608008354, guid: f4980b629bf394f74b72963d9b8c0259,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 224125682253705430, guid: f4980b629bf394f74b72963d9b8c0259,
         type: 2}
@@ -400,6 +400,35 @@ MonoBehaviour:
   koniecWalkiKwadrat:
   - {fileID: 8300000, guid: 0aed074b0e0994205b4d5aac9b5bf57f, type: 3}
   - {fileID: 8300000, guid: b9dbfb98ae0234722ac4ec21f22ecb51, type: 3}
+  walkaLosowaKolo:
+  - {fileID: 8300000, guid: 3907bce6de8fc124e831365f494923f3, type: 3}
+  - {fileID: 8300000, guid: 958a6655da7ce54489554bac2e00502e, type: 3}
+  - {fileID: 8300000, guid: ad8f74fc5fcdd1f448f15ee02c71257c, type: 3}
+  - {fileID: 8300000, guid: 0ff9c06b68e2e8048bf4ec0490876a4b, type: 3}
+  - {fileID: 8300000, guid: ce0764e0a045a7c42a247799ffeee5d4, type: 3}
+  - {fileID: 8300000, guid: ce3e8858a4f86d24f88c84025a941af3, type: 3}
+  - {fileID: 8300000, guid: e0020edf17a6be1438eadea1858e3e16, type: 3}
+  - {fileID: 8300000, guid: 419e8fd987ff7bb47b2aeb1374b69a88, type: 3}
+  - {fileID: 8300000, guid: b63c60cfd0fb2a343aac5afee2686ce9, type: 3}
+  - {fileID: 8300000, guid: 890648859789c5e4583f004c89d9b829, type: 3}
+  walkaLosowaKwadrat:
+  - {fileID: 8300000, guid: f4161e8feadaa4d42af2f372a6337f50, type: 3}
+  - {fileID: 8300000, guid: 73d8613777122479f9b85bdeb8186081, type: 3}
+  - {fileID: 8300000, guid: 954786cd7a5fb457aa35b0a2bb57c11e, type: 3}
+  - {fileID: 8300000, guid: 8fb904d36605b4bc99d7ed2e3eb126d6, type: 3}
+  - {fileID: 8300000, guid: 448a0440a88684cd7a96e64c241623f4, type: 3}
+  - {fileID: 8300000, guid: 2e400ea947f5a46b496b0d038d67b107, type: 3}
+  - {fileID: 8300000, guid: 5d5b5714b4ca4411ab7a7872050ee1f8, type: 3}
+  - {fileID: 8300000, guid: c04b8522fbf5f4bd99b3d89a6b699555, type: 3}
+  - {fileID: 8300000, guid: b88313200b7e2413b9f8987ab02e8338, type: 3}
+  - {fileID: 8300000, guid: 039d58432d9e54b4cbef4a1be9f0033d, type: 3}
+  - {fileID: 8300000, guid: cb3a303e124474f5aaaace1f0ae95eb8, type: 3}
+  - {fileID: 8300000, guid: 01bed1b5966334288b1305947cffed2d, type: 3}
+  - {fileID: 8300000, guid: 500c7095a42e943759ebdcba1a1137ed, type: 3}
+  walkaKoloCD: 5
+  walkaKwadratCD: 2
+  walkaCD: 2
+  soundCounter: 0
 --- !u!4 &261535998
 Transform:
   m_ObjectHideFlags: 0
@@ -434,7 +463,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: 0
+  Pan2D: 1
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -504,7 +533,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -514,7 +543,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: 0
+  Pan2D: -1
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -584,7 +613,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -628,7 +657,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -652,7 +681,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!114 &327190389 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114474819710193908, guid: f4980b629bf394f74b72963d9b8c0259,

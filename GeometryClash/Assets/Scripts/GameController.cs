@@ -52,7 +52,7 @@ public class GameController : MonoBehaviour
 
 		p1WinText.text = "0";
 		p2WinText.text = "0";
-        audioManager.doubleSource.PlayOneShot (audioManager.startGry[0]);
+        //audioManager.doubleSource.PlayOneShot (audioManager.startGry[0]);
     }
 
     void Update ()
@@ -71,6 +71,7 @@ public class GameController : MonoBehaviour
 		case GameState.R1:
 		case GameState.R2:
 		case GameState.R3:
+                audioManager.DoUpdate ();
 			roundTime -= Time.deltaTime;
 			timer.text = ((int)roundTime + 1).ToString ();
 
@@ -107,7 +108,7 @@ public class GameController : MonoBehaviour
             case GameState.End:
 			starter.gameObject.SetActive (true);
 
-			string text = p1WinCount > p2WinCount ? "Kwadrat Wygrał" : "Koło wygrało";
+			string text = p1WinCount > p2WinCount ? "Kwadrat Wygrał \n Naciśnij A" : "Koło wygrało \n Naciśnij A";
 
 			starter.text = text;
 			if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown (KeyCode.M))
@@ -129,11 +130,9 @@ public class GameController : MonoBehaviour
             roundWinner = 2;
             // audio
             if (roundCount == 1)
-                audioManager.koloSource.PlayOneShot (audioManager.startRundy2Kolo [Random.Range(0, audioManager.startRundy2Kolo.Length)]);
+                audioManager.doubleSource.PlayOneShot (audioManager.startRundy2Kolo [Random.Range(0, audioManager.startRundy2Kolo.Length)]);
             else if (roundCount == 2 && p2WinCount != 2)
-                audioManager.koloSource.PlayOneShot (audioManager.startRundy3Kolo [Random.Range (0, audioManager.startRundy3Kolo.Length)]);
-            else if (roundCount == 3 || p2WinCount == 2)
-                audioManager.koloSource.PlayOneShot (audioManager.koniecWalkiKolo [Random.Range (0, audioManager.koniecWalkiKolo.Length)]);
+                audioManager.doubleSource.PlayOneShot (audioManager.startRundy3Kolo [Random.Range (0, audioManager.startRundy3Kolo.Length)]);
 
         }
         else if (playerTwo.IsDead ())
@@ -143,11 +142,9 @@ public class GameController : MonoBehaviour
             roundWinner = 1;
             // audio
             if (roundCount == 1)
-                audioManager.kwadratSource.PlayOneShot (audioManager.startRundy2Kwadrat [Random.Range (0, audioManager.startRundy2Kwadrat.Length)]);
+                audioManager.doubleSource.PlayOneShot (audioManager.startRundy2Kwadrat [Random.Range (0, audioManager.startRundy2Kwadrat.Length)]);
             else if (roundCount == 2 && p1WinCount != 2)
-                audioManager.kwadratSource.PlayOneShot (audioManager.startRundy3Kwadrat [Random.Range (0, audioManager.startRundy3Kwadrat.Length)]);
-            else if (roundCount == 3 || p2WinCount == 2)
-                audioManager.kwadratSource.PlayOneShot (audioManager.koniecWalkiKwadrat [Random.Range (0, audioManager.koniecWalkiKwadrat.Length)]);
+                audioManager.doubleSource.PlayOneShot (audioManager.startRundy3Kwadrat [Random.Range (0, audioManager.startRundy3Kwadrat.Length)]);
         }
 
         if (playerDied)
@@ -155,10 +152,12 @@ public class GameController : MonoBehaviour
 
             if (p1WinCount == 2)
             {
+                audioManager.doubleSource.PlayOneShot (audioManager.koniecWalkiKwadrat [Random.Range (0, audioManager.koniecWalkiKwadrat.Length)]);
                 EndGame (playerOne);
             }
             else if (p2WinCount == 2)
             {
+                audioManager.doubleSource.PlayOneShot (audioManager.koniecWalkiKolo [Random.Range (0, audioManager.koniecWalkiKolo.Length)]);
                 EndGame (playerTwo);
             }
             else
