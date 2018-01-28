@@ -347,6 +347,7 @@ GameObject:
   - component: {fileID: 261535997}
   - component: {fileID: 261536000}
   - component: {fileID: 261535999}
+  - component: {fileID: 261536001}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -367,26 +368,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   koloSource: {fileID: 261536000}
   kwadratSource: {fileID: 261535999}
-  startGry: []
+  doubleSource: {fileID: 261536001}
+  startGry:
+  - {fileID: 8300000, guid: 4c5fbae7b0841154588d932c722947ac, type: 3}
   wstep: []
   startRundy1:
   - {fileID: 8300000, guid: 9ec447451a3c66b42b7a71d6e7475949, type: 3}
   - {fileID: 8300000, guid: 71c4f938d68fbac4cb517cf3e17baddf, type: 3}
+  - {fileID: 8300000, guid: 4aa2f98b899bf49149619cf7eb24f378, type: 3}
   startRundy2Kolo:
   - {fileID: 8300000, guid: c0e5c1be306ab1d4bbebe8fd590b610c, type: 3}
+  - {fileID: 8300000, guid: c00cc133a5cc844ab98dbfed1cc0edaa, type: 3}
+  - {fileID: 8300000, guid: fb80852496b80495a9539b924aa70b27, type: 3}
   startRundy2Kwadrat:
   - {fileID: 8300000, guid: 5c69e0e5bb8d8b3438d1f82be48a4261, type: 3}
   - {fileID: 8300000, guid: 9785e3e8301b0404089cbe3ef4977405, type: 3}
+  - {fileID: 8300000, guid: 2f0ca55a40729411e90b854521e90b59, type: 3}
   startRundy3Kolo:
   - {fileID: 8300000, guid: 3b4636906e3ff994098c5a1e63d0375e, type: 3}
   - {fileID: 8300000, guid: 3bbf09b98af8ae44ca06f8ecf2c88342, type: 3}
   - {fileID: 8300000, guid: ec53c18d76406b047b1d1c713e1b28e8, type: 3}
+  - {fileID: 8300000, guid: 2bccc9f3b36964d19ab1f64a93c26d04, type: 3}
   startRundy3Kwadrat:
   - {fileID: 8300000, guid: 45313e9000dc05246b9f6211a500aa8f, type: 3}
+  - {fileID: 8300000, guid: 1b473e6b7b37b4d81a35c937f453b5db, type: 3}
+  - {fileID: 8300000, guid: 0b039095d5d7e4e2a910ff7135be8cde, type: 3}
+  - {fileID: 8300000, guid: e7f4ea7eb13b64c4989a05e6a949f75a, type: 3}
   koniecWalkiKolo:
   - {fileID: 8300000, guid: e55214b063d20ca4ea51a1018fc07512, type: 3}
   - {fileID: 8300000, guid: 2a6f4fd4b412a754f80e3135b37d3152, type: 3}
-  koniecWalkiKwadrat: []
+  koniecWalkiKwadrat:
+  - {fileID: 8300000, guid: 0aed074b0e0994205b4d5aac9b5bf57f, type: 3}
+  - {fileID: 8300000, guid: b9dbfb98ae0234722ac4ec21f22ecb51, type: 3}
 --- !u!4 &261535998
 Transform:
   m_ObjectHideFlags: 0
@@ -560,6 +573,86 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!82 &261536001
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 261535996}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &327190389 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114474819710193908, guid: f4980b629bf394f74b72963d9b8c0259,
@@ -644,7 +737,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1455562576909346, guid: 3313b7c7882336f46a203393a44af385, type: 2}
       propertyPath: m_Name
-      value: Player2
+      value: Player1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3313b7c7882336f46a203393a44af385, type: 2}
@@ -994,7 +1087,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1641621649023982, guid: d5e1fde5a582fbc4fa7cf0aead60aa63, type: 2}
       propertyPath: m_Name
-      value: Player1
+      value: Player2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5e1fde5a582fbc4fa7cf0aead60aa63, type: 2}

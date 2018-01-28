@@ -52,7 +52,7 @@ public class GameController : MonoBehaviour
 
 		p1WinText.text = "0";
 		p2WinText.text = "0";
-
+        audioManager.doubleSource.PlayOneShot (audioManager.startGry[0]);
     }
 
     void Update ()
@@ -65,6 +65,7 @@ public class GameController : MonoBehaviour
                 if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown (KeyCode.M))
                 {
                     RoundReset ();
+                    audioManager.doubleSource.PlayOneShot (audioManager.startRundy1 [Random.Range(0, audioManager.startRundy1.Length)]);
                 }
                 break;
 		case GameState.R1:
@@ -115,6 +116,8 @@ public class GameController : MonoBehaviour
 			}
 			break;
         }
+        p1WinText.text = p1WinCount.ToString ();
+        p2WinText.text = p2WinCount.ToString ();
     }
 
     private void CheckForDeadPlayer ()
@@ -149,8 +152,6 @@ public class GameController : MonoBehaviour
 
         if (playerDied)
         {
-            p1WinText.text = p1WinCount.ToString ();
-            p2WinText.text = p2WinCount.ToString ();
 
             if (p1WinCount == 2)
             {

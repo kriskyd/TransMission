@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource koloSource, kwadratSource;
+    public AudioSource koloSource, kwadratSource, doubleSource;
     // standard
     public AudioClip [] startGry, wstep, 
         startRundy1,
