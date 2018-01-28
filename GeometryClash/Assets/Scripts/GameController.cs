@@ -21,19 +21,19 @@ public class GameController : MonoBehaviour
     public Text timer, starter, p1WinText, p2WinText;
 
 
-	public GameObject pickupPrefab, trapPrefab;
-	public float respawnTime = 0f, maxRespawnTime = 5f;
+    public GameObject pickupPrefab, trapPrefab;
+    public float respawnTime = 0f, maxRespawnTime = 5f;
 
     void Start ()
     {
         Current = this;
-		SpawnTraps ();
+        SpawnTraps ();
 
         playerOne.DoInit ();
         playerTwo.DoInit ();
 
 
-		RespawnPickups ();
+        RespawnPickups ();
 
 
         p1StartPos = playerOne.transform.position;
@@ -41,8 +41,8 @@ public class GameController : MonoBehaviour
         roundTime = maxRoundTime;
         breakTime = maxBreakTime;
 
-		p1WinText.text = "0";
-		p2WinText.text = "0";
+        p1WinText.text = "0";
+        p2WinText.text = "0";
         //audioManager.doubleSource.PlayOneShot (audioManager.startGry[0]);
     }
 
@@ -56,57 +56,59 @@ public class GameController : MonoBehaviour
                 if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown (KeyCode.M))
                 {
                     RoundReset ();
-                    audioManager.doubleSource.PlayOneShot (audioManager.startRundy1 [Random.Range(0, audioManager.startRundy1.Length)]);
+                    audioManager.doubleSource.PlayOneShot (audioManager.startRundy1 [Random.Range (0, audioManager.startRundy1.Length)]);
                 }
                 break;
-		case GameState.R1:
-		case GameState.R2:
-		case GameState.R3:
+            case GameState.R1:
+            case GameState.R2:
+            case GameState.R3:
                 audioManager.DoUpdate ();
-			roundTime -= Time.deltaTime;
-			timer.text = ((int)roundTime + 1).ToString ();
+                roundTime -= Time.deltaTime;
+                timer.text = ((int) roundTime + 1).ToString ();
 
-			if (roundTime <= -1) {
-				CheckEndTime ();
-				break;
-			}
+                if (roundTime <= -1)
+                {
+                    CheckEndTime ();
+                    break;
+                }
                 if (!ultimatumInUse)
                 {
                     playerOne.DoUpdate ();
                     playerTwo.DoUpdate ();
                 }
 
-			CheckForDeadPlayer ();
+                CheckForDeadPlayer ();
 
-			respawnTime -= Time.deltaTime;
-			if (respawnTime <= 0f)
-				RespawnPickups ();
+                respawnTime -= Time.deltaTime;
+                if (respawnTime <= 0f)
+                    RespawnPickups ();
                 break;
-		case GameState.B1:
-		case GameState.B2:
-		case GameState.B3:
-			starter.gameObject.SetActive (true);
-			breakTime -= Time.deltaTime;
-			starter.text = "Round " + (roundCount + 1).ToString() + "\n" + ((int)breakTime + 1).ToString ();
-			if (breakTime <= 0f) {
-				starter.gameObject.SetActive (false);
-				roundCount++;
-				gameState = nextRound;
-				breakTime = maxBreakTime;
-			}
+            case GameState.B1:
+            case GameState.B2:
+            case GameState.B3:
+                starter.gameObject.SetActive (true);
+                breakTime -= Time.deltaTime;
+                starter.text = "Round " + (roundCount + 1).ToString () + "\n" + ((int) breakTime + 1).ToString ();
+                if (breakTime <= 0f)
+                {
+                    starter.gameObject.SetActive (false);
+                    roundCount++;
+                    gameState = nextRound;
+                    breakTime = maxBreakTime;
+                }
 
                 break;
             case GameState.End:
-			starter.gameObject.SetActive (true);
+                starter.gameObject.SetActive (true);
 
-			string text = p1WinCount > p2WinCount ? "Kwadrat Wygrał \n Naciśnij A" : "Koło wygrało \n Naciśnij A";
+                string text = p1WinCount > p2WinCount ? "Kwadrat Wygrał \n Naciśnij A" : "Koło wygrało \n Naciśnij A";
 
-			starter.text = text;
-			if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown (KeyCode.M))
-			{
-				GameReset ();
-			}
-			break;
+                starter.text = text;
+                if (Input.GetKeyDown (KeyCode.Joystick1Button0) || Input.GetKeyDown (KeyCode.M))
+                {
+                    GameReset ();
+                }
+                break;
         }
         p1WinText.text = p1WinCount.ToString ();
         p2WinText.text = p2WinCount.ToString ();
@@ -121,10 +123,17 @@ public class GameController : MonoBehaviour
             roundWinner = 2;
             // audio
             if (roundCount == 1)
-                audioManager.doubleSource.PlayOneShot (audioManager.startRundy2Kolo [Random.Range(0, audioManager.startRundy2Kolo.Length)]);
+            {
+                audioManager.doubleSource.PlayOneShot (audioManager.startRundy2Kolo [Random.Range (0, audioManager.startRundy2Kolo.Length)]);
+                audioManager.koloSource.Stop ();
+                audioManager.kwadratSource.Stop ();
+            }
             else if (roundCount == 2 && p2WinCount != 2)
+            {
+                audioManager.koloSource.Stop ();
+                audioManager.kwadratSource.Stop ();
                 audioManager.doubleSource.PlayOneShot (audioManager.startRundy3Kolo [Random.Range (0, audioManager.startRundy3Kolo.Length)]);
-
+            }
         }
         else if (playerTwo.IsDead ())
         {
@@ -133,9 +142,17 @@ public class GameController : MonoBehaviour
             roundWinner = 1;
             // audio
             if (roundCount == 1)
+            {
+                audioManager.koloSource.Stop ();
+                audioManager.kwadratSource.Stop ();
                 audioManager.doubleSource.PlayOneShot (audioManager.startRundy2Kwadrat [Random.Range (0, audioManager.startRundy2Kwadrat.Length)]);
+            }
             else if (roundCount == 2 && p1WinCount != 2)
+            {
+                audioManager.koloSource.Stop ();
+                audioManager.kwadratSource.Stop ();
                 audioManager.doubleSource.PlayOneShot (audioManager.startRundy3Kwadrat [Random.Range (0, audioManager.startRundy3Kwadrat.Length)]);
+            }
         }
 
         if (playerDied)
@@ -143,11 +160,15 @@ public class GameController : MonoBehaviour
 
             if (p1WinCount == 2)
             {
+                audioManager.koloSource.Stop ();
+                audioManager.kwadratSource.Stop ();
                 audioManager.doubleSource.PlayOneShot (audioManager.koniecWalkiKwadrat [Random.Range (0, audioManager.koniecWalkiKwadrat.Length)]);
                 EndGame (playerOne);
             }
             else if (p2WinCount == 2)
             {
+                audioManager.koloSource.Stop ();
+                audioManager.kwadratSource.Stop ();
                 audioManager.doubleSource.PlayOneShot (audioManager.koniecWalkiKolo [Random.Range (0, audioManager.koniecWalkiKolo.Length)]);
                 EndGame (playerTwo);
             }
@@ -160,33 +181,33 @@ public class GameController : MonoBehaviour
 
     }
 
-	private void CheckEndTime()
-	{
-		if (playerOne.lifeTotal >= playerTwo.lifeTotal)
-		{
-			p1WinCount++;
-		}
-		else
-		{
-			p2WinCount++;
-		}
+    private void CheckEndTime ()
+    {
+        if (playerOne.lifeTotal >= playerTwo.lifeTotal)
+        {
+            p1WinCount++;
+        }
+        else
+        {
+            p2WinCount++;
+        }
 
 
-		if (p1WinCount == 2)
-		{
-			EndGame (playerOne);
-		}
-		else if (p2WinCount == 2)
-		{
-			EndGame (playerTwo);
-		}
-		else
-		{
-			RoundReset ();
-		}
-		playerDied = false;
+        if (p1WinCount == 2)
+        {
+            EndGame (playerOne);
+        }
+        else if (p2WinCount == 2)
+        {
+            EndGame (playerTwo);
+        }
+        else
+        {
+            RoundReset ();
+        }
+        playerDied = false;
 
-	}
+    }
 
     public void RoundReset ()
     {
@@ -210,68 +231,68 @@ public class GameController : MonoBehaviour
 
         roundTime = maxRoundTime;
 
-        foreach (Bullet b in FindObjectsOfType<Bullet>().ToList())
+        foreach (Bullet b in FindObjectsOfType<Bullet> ().ToList ())
         {
             Destroy (b.gameObject);
         }
     }
 
-	private void RespawnPickups()
-	{
-		print("RespawnPickups " + respawnTime);
-		foreach (Pickup item in FindObjectsOfType<Pickup> ().ToList ())
-		{
-			Destroy (item.gameObject);
-		}
+    private void RespawnPickups ()
+    {
+        print ("RespawnPickups " + respawnTime);
+        foreach (Pickup item in FindObjectsOfType<Pickup> ().ToList ())
+        {
+            Destroy (item.gameObject);
+        }
 
 
-		Vector3 position = new Vector3 (-5.0f, 6.0f, -1.0f);
-		Pickup pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
+        Vector3 position = new Vector3 (-5.0f, 6.0f, -1.0f);
+        Pickup pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
 
-		position = new Vector3 (5.0f, 6.0f, -1.0f);
-		pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
+        position = new Vector3 (5.0f, 6.0f, -1.0f);
+        pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
 
-		position = new Vector3 (5.0f, -6.0f, -1.0f);
-		pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
+        position = new Vector3 (5.0f, -6.0f, -1.0f);
+        pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
 
-		position = new Vector3 (-5.0f, -6.0f, -1.0f);
-		pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
+        position = new Vector3 (-5.0f, -6.0f, -1.0f);
+        pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
 
-		respawnTime = maxRespawnTime;
+        respawnTime = maxRespawnTime;
 
-	}
+    }
 
-	private void SpawnTraps()
-	{
-		print("SpawnTraps");
+    private void SpawnTraps ()
+    {
+        print ("SpawnTraps");
 
-		foreach (TrapController item in FindObjectsOfType<TrapController> ().ToList ())
-		{
-			Destroy (item.gameObject);
-		}
+        foreach (TrapController item in FindObjectsOfType<TrapController> ().ToList ())
+        {
+            Destroy (item.gameObject);
+        }
 
-		Vector3 position = new Vector3 (-9.0f, 6.0f, -1.0f);
-		TrapController pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
+        Vector3 position = new Vector3 (-9.0f, 6.0f, -1.0f);
+        TrapController pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
 
-		position = new Vector3 (0.0f, 4.0f, -1.0f);
-		pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
+        position = new Vector3 (0.0f, 4.0f, -1.0f);
+        pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
 
-		position = new Vector3 (9.0f, 6.0f, -1.0f);
-		pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
+        position = new Vector3 (9.0f, 6.0f, -1.0f);
+        pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
 
-		position = new Vector3 (9.0f, -6.0f, -1.0f);
-		pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
+        position = new Vector3 (9.0f, -6.0f, -1.0f);
+        pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
 
-		position = new Vector3 (0.0f, -4.0f, -1.0f);
-		pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
+        position = new Vector3 (0.0f, -4.0f, -1.0f);
+        pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
 
-		position = new Vector3 (-9.0f, -6.0f, -1.0f);
-		pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
+        position = new Vector3 (-9.0f, -6.0f, -1.0f);
+        pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
 
 
-		respawnTime = maxRespawnTime;
+        respawnTime = maxRespawnTime;
 
-	}
+    }
 
     void EndGame (PlayerController winner)
     {
