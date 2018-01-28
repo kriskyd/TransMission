@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
 
         p1WinText.text = "0";
         p2WinText.text = "0";
-        //audioManager.doubleSource.PlayOneShot (audioManager.startGry[0]);
+        audioManager.doubleSource.PlayOneShot (audioManager.startGry[0]);
     }
 
     void Update ()

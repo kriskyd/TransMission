@@ -26,6 +26,7 @@ public class CircleUltimate : Bullet
                 break;
             case State.sizing:
                 enemy.ReceiveDamage (damage);
+                GameController.Current.ultimatumInUse = false;
                 break;
         }
     }

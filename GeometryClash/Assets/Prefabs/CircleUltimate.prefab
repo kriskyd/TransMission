@@ -123,7 +123,7 @@ Transform:
   m_GameObject: {fileID: 1902506769414978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 7, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 4684740030733172}
   - {fileID: 4018503058797088}
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   enemy: {fileID: 0}
-  speed: 15
+  speed: 12
   damage: 80
   state: 0
   size: 0

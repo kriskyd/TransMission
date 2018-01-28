@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     public Slider lifeSlider;
     public Slider energySlider;
     public float superCD = 0f, maxSuperCD = 5f;
+    public AudioSource AS, ASS;
+    public AudioClip shot1, shot2, shot3;
+    public AudioClip[] ultimate;
 
     public void DoInit ()
     {
@@ -89,6 +92,7 @@ public class PlayerController : MonoBehaviour
                 NormalShot ns = Instantiate (normalShotPrefab, transform.position, transform.rotation).GetComponent<NormalShot> ();
                 ns.DoInit (this);
                 shot = true;
+                AS.PlayOneShot (shot1);
             }
         }
         else
@@ -99,6 +103,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetAxisRaw (gameObject.name + " left-trigger") > 0.5f)
         {
+            ASS.PlayOneShot (shot2);
             superCD = maxSuperCD;
             switch (geometry)
             {
@@ -118,6 +123,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown ("joystick " + playerID.ToString () + " button 5"))
         {
+            ASS.PlayOneShot (shot3);
             switch (geometry)
             {
                 case Geometry.circle:
