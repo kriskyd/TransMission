@@ -14,8 +14,6 @@ public class GameController : MonoBehaviour
 
     public PlayerController playerOne, playerTwo;
 
-    public List<TrapController> traps;
-
     private Vector3 p1StartPos, p2StartPos;
     public int roundCount = 0, maxRounds = 3, p1WinCount = 0, p2WinCount = 0, maxWins = 2, roundWinner = 0;
     public float roundTime, maxRoundTime = 60f, breakTime, maxBreakTime = 3f;
@@ -23,20 +21,13 @@ public class GameController : MonoBehaviour
     public Text timer, starter, p1WinText, p2WinText;
 
 
-	public GameObject pickupPrefab;
+	public GameObject pickupPrefab, trapPrefab;
 	public float respawnTime = 0f, maxRespawnTime = 5f;
 
     void Start ()
     {
         Current = this;
-    
-
-        traps = FindObjectsOfType<TrapController> ().ToList ();
-        for (int i = 0; i < traps.Count; i++)
-        {
-            traps [i].DoInit ();
-        }
-
+		SpawnTraps ();
 
         playerOne.DoInit ();
         playerTwo.DoInit ();
@@ -245,6 +236,38 @@ public class GameController : MonoBehaviour
 
 		position = new Vector3 (-5.0f, -6.0f, -1.0f);
 		pick = Instantiate (pickupPrefab, position, transform.rotation).GetComponent<Pickup> ();
+
+		respawnTime = maxRespawnTime;
+
+	}
+
+	private void SpawnTraps()
+	{
+		print("SpawnTraps");
+
+		foreach (TrapController item in FindObjectsOfType<TrapController> ().ToList ())
+		{
+			Destroy (item.gameObject);
+		}
+
+		Vector3 position = new Vector3 (-9.0f, 6.0f, -1.0f);
+		TrapController pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
+
+		position = new Vector3 (0.0f, 4.0f, -1.0f);
+		pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
+
+		position = new Vector3 (9.0f, 6.0f, -1.0f);
+		pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
+
+		position = new Vector3 (9.0f, -6.0f, -1.0f);
+		pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
+
+		position = new Vector3 (0.0f, -4.0f, -1.0f);
+		pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
+
+		position = new Vector3 (-9.0f, -6.0f, -1.0f);
+		pick = Instantiate (trapPrefab, position, transform.rotation).GetComponent<TrapController> ();
+
 
 		respawnTime = maxRespawnTime;
 
